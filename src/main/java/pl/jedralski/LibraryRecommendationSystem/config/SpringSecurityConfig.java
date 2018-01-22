@@ -2,14 +2,16 @@ package pl.jedralski.LibraryRecommendationSystem.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
 
-
-public class SpringSecurityConfig {
+@Configuration
+public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private DataSource dataSource;
 
@@ -22,7 +24,9 @@ public class SpringSecurityConfig {
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication()
                 .usersByUsernameQuery(
-                        "select username, hash, 1 as active from users u where u.username = ?")
+                        "select username, hash, 1 as active from users where username = ?")
+                .authoritiesByUsernameQuery(
+                        "select username, 'user' as role_name from users where username = ?")
                 .dataSource(dataSource);
     }
 
@@ -30,6 +34,12 @@ public class SpringSecurityConfig {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers("/login").permitAll()
                 .antMatchers("/").hasAnyAuthority("user", "admin")
+                .antMatchers("/account/**").hasAnyAuthority("user", "admin")
+                .antMatchers("/book/**").hasAnyAuthority("user", "admin")
+                .antMatchers("/borrowed/**").hasAnyAuthority("user", "admin")
+                .antMatchers("/favourites/**").hasAnyAuthority("user", "admin")
+                .antMatchers("/ratings/**").hasAnyAuthority("user", "admin")
+                .antMatchers("/waiting/**").hasAnyAuthority("user", "admin")
                 .and().formLogin().loginPage("/login").failureUrl("/login?error=true").defaultSuccessUrl("/")
                 .usernameParameter("username").passwordParameter("password")
                 .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login")
