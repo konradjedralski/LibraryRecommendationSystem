@@ -1,0 +1,95 @@
+html {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    background: linear-gradient(to bottom right, #FFCC66, #FFBA42, #FF9900, #CC8500, #CC6E00);
+}
+
+/* PM */
+.flex {
+    display: flex;
+}
+
+.header {
+    background: linear-gradient(to bottom right, #FFCC99,#F7BD82, #FFCC66, #CC6600, #E69933, #CC6600);
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 20px;
+    justify-content: space-between;
+}
+
+.header .search-area {
+    flex-grow: 10;
+}
+
+.header .search-area input {
+    margin-right: 10px;
+}
+
+.header .title {
+    flex-grow: 2;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.header .greeting {
+    flex-grow: 1;
+    font-size: 20px;
+    text-align: right;
+    font-weight: bold;
+}
+
+.navbar {
+    background: linear-gradient(to bottom right, #FFCC66, #CC6600, #E69933, #CC6600);
+    border: none;
+    border-radius: 0;
+}
+
+.btn-primary{
+    background-color: #922F00;
+}
+
+.navbar .current a {
+    font-size: 18px;
+    color: #922F00 !important;
+    font-weight: bold;
+}
+
+.navbar a{    
+    color: #922F00 !important;
+    font-size: 16px;
+}
+
+.navbar li:hover a {
+    text-decoration: underline;
+    color: 	#5a2d0c !important;
+}
+
+.navbar button {
+    float: left;
+    margin-left: 15px;
+    background-color: #922F00;
+}
+
+.icon-bar {
+    background-color: white !important;
+}
+
+.date {
+    color: #922F00;
+    font-size: 14px;
+    position: absolute;    
+    margin-left: 10px;     
+    bottom: 10px;
+}
+
+.author {
+    color: #922F00;
+    font-size: 14px;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+}

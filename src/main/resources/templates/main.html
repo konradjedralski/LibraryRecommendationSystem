@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pl-PL"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <head>
+        <title>Wypożyczalnia książek</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>   
+        <script type="text/javascript" src="js/carousel.js"></script>
+        <script type="text/javascript" src="js/date.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="css/styles.css"/>     
+        <link rel="stylesheet" href="css/carousel.css"/>
+    </head>
+
+    <body onload="startTime()">
+        <div class="header flex">
+            <div class="title">
+                <a th:href="@{'/'}"><img src="img/logo.png" class="img-rounded" alt="Wypożyczalnia książek"/></a>
+            </div>
+            <div class="search-area">
+                <div class="flex">
+                    <input class="form-control" placeholder="Szukaj książki..."/>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> Szukaj</button>
+                </div>
+            </div>
+            <div class="greeting">
+                <i class="fas fa-user"></i><span> Konrad</span>
+            </div>
+        </div>
+
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>                        
+                    </button>     
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">                    
+                    <ul class="nav navbar-nav">
+                        <li class="current"><a th:href="@{'/'}">Strona główna</a></li>
+                        <li><a th:href="@{'/favourites'}">Ulubione</a></li>
+                        <li><a th:href="@{'/waiting'}">Poczekalnia</a></li>
+                        <li><a th:href="@{'/borrowed'}">Wypożyczone</a></li>
+                        <li><a th:href="@{'/ratings'}">Moje oceny</a></li>
+                        <li><a th:href="@{'/account'}">Konto</a></li>  
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a th:href="@{'/logout'}"><i class="fas fa-power-off"></i> Wyloguj</a></li>
+                    </ul>                   
+                </div>
+            </div>
+        </nav>
+
+        <div class="col-md-12 text-left text1">Polecane dla Ciebie</div>
+        <div class="col-md-12">
+            <div class="carousel slide" id="myCarousel1">
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <div class="col-xs-2"><a th:href="@{'/book'}"><img src="http://placehold.it/500/e499e4/fff&amp;text=1" class="img-responsive img-rounded"/></a></div>
+                    </div>
+                    <div class="item">
+                        <div class="col-xs-2"><a th:href="@{'/book'}"><img src="http://placehold.it/500/e499e4/fff&amp;text=2" class="img-responsive img-rounded"/></a></div>
+                    </div>
+                    <div class="item">
+                        <div class="col-xs-2"><a href="#"><img src="http://placehold.it/500/e499e4/fff&amp;text=3" class="img-responsive img-rounded"/></a></div>
+                    </div>
+                    <div class="item">
+                        <div class="col-xs-2"><a href="#"><img src="http://placehold.it/500/e499e4/fff&amp;text=4" class="img-responsive img-rounded"/></a></div>
+                    </div>
+                    <div class="item">
+                        <div class="col-xs-2"><a href="#"><img src="http://placehold.it/500/e499e4/fff&amp;text=5" class="img-responsive img-rounded"/></a></div>
+                    </div>
+                    <div class="item">
+                        <div class="col-xs-2"><a href="#"><img src="http://placehold.it/500/e499e4/fff&amp;text=6" class="img-responsive img-rounded"/></a></div>
+                    </div>
+                    <div class="item">
+                        <div class="col-xs-2"><a href="#"><img src="http://placehold.it/500/e499e4/fff&amp;text=7" class="img-responsive img-rounded"/></a></div>
+                    </div>
+                    <div class="item">
+                        <div class="col-xs-2"><a href="#"><img src="http://placehold.it/500/e499e4/fff&amp;text=8" class="img-responsive img-rounded"/></a></div>
+                    </div>
+                    <div class="item">
+                        <div class="col-xs-2"><a href="#"><img src="http://placehold.it/500/e499e4/fff&amp;text=9" class="img-responsive img-rounded"/></a></div>
+                    </div>
+                    <div class="item">
+                        <div class="col-xs-2"><a href="#"><img src="http://placehold.it/500/e499e4/fff&amp;text=10" class="img-responsive img-rounded"/></a></div>
+                    </div>
+                    <div class="item">
+                        <div class="col-xs-2"><a href="#"><img src="http://placehold.it/500/e499e4/fff&amp;text=11" class="img-responsive img-rounded"/></a></div>
+                    </div>
+                    <div class="item">
+                        <div class="col-xs-2"><a href="#"><img src="http://placehold.it/500/e499e4/fff&amp;text=12" class="img-responsive img-rounded"/></a></div>
+                    </div>
+                </div>
+                <a class="left carousel-control" href="#myCarousel1" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                <a class="right carousel-control" href="#myCarousel1" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+            </div>
+        </div>
+
+        <div class="col-md-12 text-left text2">Ostatnio przeczytane</div>
+        <div class="col-md-12">
+            <div class="carousel slide" id="myCarousel2">
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <div class="col-xs-2"><a href="#"><img src="http://placehold.it/500/e499e4/fff&amp;text=1" class="img-responsive img-rounded"/></a></div>
+                    </div>
+                    <div class="item">
+                        <div class="col-xs-2"><a href="#"><img src="http://placehold.it/500/e499e4/fff&amp;text=2" class="img-responsive img-rounded"/></a></div>
+                    </div>
+                    <div class="item">
+                        <div class="col-xs-2"><a href="#"><img src="http://placehold.it/500/e499e4/fff&amp;text=3" class="img-responsive img-rounded"/></a></div>
+                    </div>
+                    <div class="item">
+                        <div class="col-xs-2"><a href="#"><img src="http://placehold.it/500/e499e4/fff&amp;text=4" class="img-responsive img-rounded"/></a></div>
+                    </div>
+                    <div class="item">
+                        <div class="col-xs-2"><a href="#"><img src="http://placehold.it/500/e499e4/fff&amp;text=5" class="img-responsive img-rounded"/></a></div>
+                    </div>
+                    <div class="item">
+                        <div class="col-xs-2"><a href="#"><img src="http://placehold.it/500/e499e4/fff&amp;text=6" class="img-responsive img-rounded"/></a></div>
+                    </div>
+                    <div class="item">
+                        <div class="col-xs-2"><a href="#"><img src="http://placehold.it/500/e499e4/fff&amp;text=7" class="img-responsive img-rounded"/></a></div>
+                    </div>
+                    <div class="item">
+                        <div class="col-xs-2"><a href="#"><img src="http://placehold.it/500/e499e4/fff&amp;text=8" class="img-responsive img-rounded"/></a></div>
+                    </div>
+                    <div class="item">
+                        <div class="col-xs-2"><a href="#"><img src="http://placehold.it/500/e499e4/fff&amp;text=9" class="img-responsive img-rounded"/></a></div>
+                    </div>
+                    <div class="item">
+                        <div class="col-xs-2"><a href="#"><img src="http://placehold.it/500/e499e4/fff&amp;text=10" class="img-responsive img-rounded"/></a></div>
+                    </div>
+                    <div class="item">
+                        <div class="col-xs-2"><a href="#"><img src="http://placehold.it/500/e499e4/fff&amp;text=11" class="img-responsive img-rounded"/></a></div>
+                    </div>
+                    <div class="item">
+                        <div class="col-xs-2"><a href="#"><img src="http://placehold.it/500/e499e4/fff&amp;text=12" class="img-responsive img-rounded"/></a></div>
+                    </div>
+                </div>
+                <a class="left carousel-control" href="#myCarousel2" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                <a class="right carousel-control" href="#myCarousel2" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+            </div>
+        </div>
+
+        <div class="date" id="txt"></div>
+        <div class="author">Copyright &copy; Konrad Jędralski</div>
+    </body>
+</html>

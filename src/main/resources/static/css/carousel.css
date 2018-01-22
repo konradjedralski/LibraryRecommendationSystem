@@ -1,0 +1,36 @@
+.text1{
+    font-size: 25px;
+    font-weight: bold;
+    color: #922F00;
+    margin-left: 20px;
+}
+
+.text2{
+    font-size: 25px;
+    font-weight: bold;
+    color: #922F00;
+    margin-left: 20px;
+    margin-top: 40px;
+}
+
+.carousel-inner .active.left { 
+    left: -25%; 
+}
+
+.carousel-inner .next { 
+    left:  25%; 
+}
+
+.carousel-inner .prev { 
+    left: -25%; 
+}
+
+.carousel-control { 
+    width:  1%;
+}
+
+.carousel-control.left, .carousel-control.right {
+    margin-left: 10px;
+    margin-right: 10px;
+    background-image: none;
+}
