@@ -1,11 +1,12 @@
 html {
-    height: 100%;
-    width: 100%;
+    width:100%;
+    height:100%;
     overflow-x: hidden;
 }
 
 body {
-    background: linear-gradient(to bottom right, #FFCC66, #FFBA42, #FF9900, #CC8500, #CC6E00);
+    background: linear-gradient(to bottom right, #FFCC66, #FFBA42, #FF9900, #CC8500, #CC6E00) no-repeat center center fixed;     
+    background-size: cover;
 }
 
 /* PM */
@@ -52,9 +53,16 @@ body {
     background-color: #922F00;
 }
 
+.btn-primary:hover,
+.btn-primary:focus {
+    color: white;
+    background-color: #6d2300;
+    border-color: #6d2300;
+}
+
 .navbar .current a {
     font-size: 18px;
-    color: #922F00 !important;
+    color: #5a2d0c !important;
     font-weight: bold;
 }
 
@@ -63,16 +71,24 @@ body {
     font-size: 16px;
 }
 
-.navbar li:hover a {
-    text-decoration: underline;
-    color: 	#5a2d0c !important;
+.navbar li:hover a {    
+    color: #5a2d0c !important;
+    font-weight: bold;
 }
 
-.navbar button {
+.nav-btn {
     float: left;
     margin-left: 15px;
     background-color: #922F00;
 }
+
+.nav-btn:hover,
+.nav-btn:focus { 
+    color: white;
+    background-color: #6d2300 !important;
+    border-color: #6d2300 !important;
+}
+
 
 .icon-bar {
     background-color: white !important;
@@ -81,15 +97,47 @@ body {
 .date {
     color: #922F00;
     font-size: 14px;
-    position: absolute;    
-    margin-left: 10px;     
+    position: fixed;    
+    margin-left: 2px;     
     bottom: 5px;
 }
 
 .author {
     color: #922F00;
     font-size: 14px;
-    position: absolute;
-    right: 10px;
+    position: fixed;
+    right: 2px;
     bottom: 5px;
+}
+
+@media (max-width: 943px) {
+    .navbar-header {
+        float: none;
+    }
+
+    .navbar-toggle {
+        display: block;
+    }
+
+    .navbar-collapse.collapse {
+        display: none!important;
+    }
+
+    .navbar-nav {
+        float: none!important;
+        margin-top: 7.5px;
+    }
+
+    .navbar-nav>li {
+        float: none;
+    }
+
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .collapse.in{
+        display:block !important;
+    }  
 }

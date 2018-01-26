@@ -1,0 +1,18 @@
+.account-title {
+    font-size: calc(12px + 1.5vw);
+    font-weight: bold;
+    margin-left: 30px;
+    color: #922F00;
+}
+
+.account-field {
+    font-size: calc(12px + 1vw);
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.account-text {
+    font-size: calc(12px + 1vw);
+    color: #922F00;
+    margin-left: 30px;
+}

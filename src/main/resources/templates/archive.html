@@ -3,16 +3,16 @@
       xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
     <head>
-        <title>Wypożyczone</title>
+        <title>Wypożyczalnia książek</title>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>   
+        <script src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>
         <script type="text/javascript" src="/js/date.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="/css/styles.css"/>
-        <link rel="stylesheet" href="/css/borrowed.css"/>
+         <link rel="stylesheet" href="/css/archive.css"/>
         
     </head>
 
@@ -47,8 +47,8 @@
                         <li><a th:href="@{'/favourites'}">Ulubione</a></li>
                         <li><a th:href="@{'/waiting'}">Poczekalnia</a></li>                       
                         <li><a th:href="@{'/ratings'}">Moje oceny</a></li>
-                        <li class="current"><a th:href="@{'/borrowed'}">Wypożyczone</a></li> 
-                        <li><a th:href="@{'/borrowed/archive'}">Archiwum</a></li>
+                        <li><a th:href="@{'/borrowed'}">Wypożyczone</a></li> 
+                        <li class="current"><a th:href="@{'/borrowed/archive'}">Archiwum</a></li>
                         <li><a th:href="@{'/account'}">Konto</a></li>  
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
@@ -57,13 +57,18 @@
                 </div>
             </div>
         </nav>
-        
+
         <div align="center">            
-            <div class="col-md-3 borrowed-img"><a th:href="@{'/book'}"><img src="http://images.amazon.com/images/P/0373218486.01.LZZZZZZZ.jpg" class="img-responsive img-rounded"/></a></div>
-            <div class="col-md-3 borrowed-img"><a th:href="@{'/book'}"><img src="http://images.amazon.com/images/P/0373218486.01.LZZZZZZZ.jpg" class="img-responsive img-rounded"/></a></div>
-            <div class="col-md-3 borrowed-img"><a th:href="@{'/book'}"><img src="http://images.amazon.com/images/P/0373218486.01.LZZZZZZZ.jpg" class="img-responsive img-rounded"/></a></div>
-            <div class="col-md-3 borrowed-img"><a th:href="@{'/book'}"><img src="http://images.amazon.com/images/P/0373218486.01.LZZZZZZZ.jpg" class="img-responsive img-rounded"/></a></div>
+            <div class="col-md-2 archive-img"><a th:href="@{'/book'}"><img src="http://images.amazon.com/images/P/0373218486.01.LZZZZZZZ.jpg" class="img-responsive img-rounded"/></a></div>
+            <div class="col-md-2 archive-img"><a th:href="@{'/book'}"><img src="http://images.amazon.com/images/P/0373218486.01.LZZZZZZZ.jpg" class="img-responsive img-rounded"/></a></div>
+            <div class="col-md-2 archive-img"><a th:href="@{'/book'}"><img src="http://images.amazon.com/images/P/0373218486.01.LZZZZZZZ.jpg" class="img-responsive img-rounded"/></a></div>
+            <div class="col-md-2 archive-img"><a th:href="@{'/book'}"><img src="http://images.amazon.com/images/P/0373218486.01.LZZZZZZZ.jpg" class="img-responsive img-rounded"/></a></div>
+            <div class="col-md-2 archive-img"><a th:href="@{'/book'}"><img src="http://images.amazon.com/images/P/0373218486.01.LZZZZZZZ.jpg" class="img-responsive img-rounded"/></a></div>
+            <div class="col-md-2 archive-img"><a th:href="@{'/book'}"><img src="http://images.amazon.com/images/P/0373218486.01.LZZZZZZZ.jpg" class="img-responsive img-rounded"/></a></div>
+            <div class="col-md-2 archive-img"><a th:href="@{'/book'}"><img src="http://images.amazon.com/images/P/0373218486.01.LZZZZZZZ.jpg" class="img-responsive img-rounded"/></a></div>
+            <div class="col-md-2 archive-img"><a th:href="@{'/book'}"><img src="http://images.amazon.com/images/P/0373218486.01.LZZZZZZZ.jpg" class="img-responsive img-rounded"/></a></div>
         </div>
+
         <div class="date" id="txt"></div>
         <div class="author">Copyright &copy; Konrad Jędralski</div>
     </body>

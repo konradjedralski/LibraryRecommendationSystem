@@ -14,4 +14,10 @@ public class BorrowedController {
         model.addAttribute("username", authentication.getName());
         return "borrowed";
     }
+
+    @RequestMapping("/archive")
+    public String archive(Model model, Authentication authentication) {
+        model.addAttribute("username", authentication.getName());
+        return "archive";
+    }
 }

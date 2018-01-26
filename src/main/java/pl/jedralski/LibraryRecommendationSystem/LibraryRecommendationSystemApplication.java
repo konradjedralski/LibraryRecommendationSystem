@@ -2,15 +2,8 @@ package pl.jedralski.LibraryRecommendationSystem;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import pl.jedralski.LibraryRecommendationSystem.dbconnection.DBConnector;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 
 @SpringBootApplication
@@ -18,6 +11,17 @@ public class LibraryRecommendationSystemApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(LibraryRecommendationSystemApplication.class, args);
+     /*
+
+        int i = 0;
+
+            String password = "Iza";
+            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+            String hashedPassword = passwordEncoder.encode(password);
+
+            System.out.println(hashedPassword);
+            i++;
+*/
 /*
         Connection connection = null;
         try {
@@ -34,8 +38,8 @@ public class LibraryRecommendationSystemApplication {
 
         DBConnector.closeConnection(connection);
         System.exit(0);
-
-*/
+        */
     }
+
 
 }
