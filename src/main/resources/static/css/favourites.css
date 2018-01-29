@@ -1,11 +1,20 @@
 .favourites-img {
     max-width: 50%;
     height: auto;
-    margin-bottom: 50px;
 }
 
 .favourites-txt {
     font-size: calc(12px + 1vw);
     color: #922F00;
     font-weight: bold;
+    text-align: center;
+}
+
+.favourites {
+    height: 700px;
+}
+
+img {
+    display: block;
+    margin: 0 auto;
 }

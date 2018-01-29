@@ -2,99 +2,79 @@
 <html lang="pl-PL"
       xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-    <head>
-        <title>Moje oceny</title>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>   
-        <script type="text/javascript" src="/js/date.js"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-        <link rel="stylesheet" href="/css/styles.css"/>
-        <link rel="stylesheet" href="/css/ratings.css"/>
-    </head>
+<head>
+    <title>Moje oceny</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>
+    <script type="text/javascript" src="/js/date.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/styles.css"/>
+    <link rel="stylesheet" href="/css/ratings.css"/>
+</head>
 
-    <body onload="startTime()">
-        <div class="header flex">
-            <div class="title">
-                <a th:href="@{'/'}"><img src="/img/logo.png" class="img-responsive" alt="Wypożyczalnia książek"/></a>
-            </div>
-            <div class="search-area">
-                <div class="flex">
-                    <input class="form-control" placeholder="Szukaj książki..."/>
-                    <button type="submit" class="btn btn-primary" onclick="this.blur()"><i class="fas fa-search"></i> Szukaj</button>
-                </div>
-            </div>
-            <div class="greeting">
-                <i class="fas fa-user"></i> <span th:text="${username}"></span>
-            </div>
-        </div>
+<body onload="startTime()">
+<div class="header flex">
+    <div class="title">
+        <a th:href="@{'/'}"><img src="/img/logo.png" class="img-responsive" alt="Wypożyczalnia książek"/></a>
+    </div>
 
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle nav-btn" data-toggle="collapse" onclick="this.blur()" data-target="#myNavbar">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>                        
-                    </button>     
-                </div>
-                <div class="collapse navbar-collapse" id="myNavbar">                    
-                    <ul class="nav navbar-nav">
-                        <li><a th:href="@{'/'}">Strona główna</a></li>
-                        <li><a th:href="@{'/favourites'}">Ulubione</a></li>
-                        <li><a th:href="@{'/waiting'}">Poczekalnia</a></li>                       
-                        <li class="current"><a th:href="@{'/ratings'}">Moje oceny</a></li>
-                        <li><a th:href="@{'/borrowed'}">Wypożyczone</a></li> 
-                        <li><a th:href="@{'/borrowed/archive'}">Archiwum</a></li>
-                        <li><a th:href="@{'/account'}">Konto</a></li>  
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a th:href="@{'/logout'}"><i class="fas fa-power-off"></i> Wyloguj</a></li>
-                    </ul>                   
-                </div>
-            </div>
-        </nav>
-        
-        <div class="col-md-12 rating">
-            <div class="col-md-1"></div>
-            <div class="col-md-1">
-                <a th:href="@{'/book'}"><img src="http://images.amazon.com/images/P/0373218486.01.MZZZZZZZ.jpg" class="img-responsive img-rounded"/></a>                
-            </div>
-            <div class="col-md-4">
-                <p class="rating-text">Królewna Śnieżka</p>
-                <p class="rating-text"><i class="fas fa-star"></i> 5</p>
-            </div> 
-            <div class="col-md-1"></div>
-            <div class="col-md-1">
-                <a th:href="@{'/book'}"><img src="http://images.amazon.com/images/P/0373218486.01.MZZZZZZZ.jpg" class="img-responsive img-rounded"/></a>                
-            </div>
-            <div class="col-md-4">
-                <p class="rating-text">Super książka</p>
-                <p class="rating-text"><i class="fas fa-star"></i> 5</p>
-            </div>
-        </div>        
-        <div class="col-md-12 rating">
-            <div class="col-md-1"></div>
-            <div class="col-md-1">
-                <a th:href="@{'/book'}"><img src="http://images.amazon.com/images/P/0373218486.01.MZZZZZZZ.jpg" class="img-responsive img-rounded"/></a>                
-            </div>
-            <div class="col-md-4">
-                <p class="rating-text">Królewna Śnieżka</p>
-                <p class="rating-text"><i class="fas fa-star"></i> 5</p>
-            </div>
-            <div class="col-md-1"></div>
-            <div class="col-md-1">
-                <a th:href="@{'/book'}"><img src="http://images.amazon.com/images/P/0373218486.01.MZZZZZZZ.jpg" class="img-responsive img-rounded"/></a>                
-            </div>
-            <div class="col-md-4">
-                <p class="rating-text">Super książka</p>
-                <p class="rating-text"><i class="fas fa-star"></i> 5</p>
-            </div>
+    <form class="search-area" action="#" th:action="@{/book/titleSearch}" th:object="${search}">
+        <div class="flex">
+            <input name="search" id="search" type="text" class="form-control" placeholder="Szukaj książki..."/>
+            <button type="submit" class="btn btn-primary" onclick="this.blur()"><i class="fas fa-search"></i> Szukaj
+            </button>
         </div>
-        
-        <div class="date" id="txt"></div>
-        <div class="author">Copyright &copy; Konrad Jędralski</div>
-    </body>
+    </form>
+
+    <div class="greeting">
+        <i class="fas fa-user"></i> <span th:text="${username}"></span>
+    </div>
+</div>
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle nav-btn" data-toggle="collapse" onclick="this.blur()"
+                    data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li><a th:href="@{'/'}">Strona główna</a></li>
+                <li><a th:href="@{'/favourites'}">Ulubione</a></li>
+                <li><a th:href="@{'/waiting'}">Poczekalnia</a></li>
+                <li class="current"><a th:href="@{'/ratings'}">Moje oceny</a></li>
+                <li><a th:href="@{'/borrowed'}">Wypożyczone</a></li>
+                <li><a th:href="@{'/borrowed/archive'}">Archiwum</a></li>
+                <li><a th:href="@{'/account'}">Konto</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a th:href="@{'/logout'}"><i class="fas fa-power-off"></i> Wyloguj</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div th:each="ratings, iiterator:${ratingsList}">
+    <div class="col-md-1 rating">
+        <a th:href="@{'/book'}"><img th:src="@{${ratings.getImageM()}}" class="img-responsive img-rounded"/></a>
+    </div>
+    <div class="col-md-5 rating">
+        <p class="rating-text"><span th:text="${ratings.getTitle()}"></span></p>
+        <p class="rating-text"><i class="fas fa-star"></i> <span th:text="${ratings.getRating()}"></span></p>
+    </div>
+</div>
+
+
+<div class="date" id="txt"></div>
+<div class="author">Copyright &copy; Konrad Jędralski</div>
+</body>
 </html>
+

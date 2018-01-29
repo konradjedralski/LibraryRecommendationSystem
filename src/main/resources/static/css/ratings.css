@@ -1,5 +1,4 @@
-.rating-text {  
-    margin-top: 10px;
+.rating-text {
     font-size: calc(12px + 1vw);
     color: #922F00;
     font-weight: bold;
@@ -7,4 +6,5 @@
 
 .rating {
     margin-bottom: 30px;
+    height: 160px;
 }
