@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="pl-PL"
-      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      lang="en-EN">
 
 <head>
-    <title>Logowanie</title>
+    <title>Login</title>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -19,14 +20,14 @@
         <div class="col-md-6 col-md-offset-3">
             <div class="panel panel-login">
                 <div class="panel-heading">
-                    <div align="center"><img src="/img/logo.png" class="img-responsive" alt="Wypożyczalnia książek"/>
+                    <div align="center"><img src="/img/logo.png" class="img-responsive" alt="Library"/>
                     </div>
                     <div class="row">
                         <div class="col-xs-6">
-                            <a href="#" class="active" id="login-form-link">Logowanie</a>
+                            <a th:href="@{'/login'}" class="active" id="login-form-link">Login</a>
                         </div>
                         <div class="col-xs-6">
-                            <a href="#" id="register-form-link">Rejestracja</a>
+                            <a th:href="@{'/login/register'}" id="register-form-link">Registration</a>
                         </div>
                     </div>
                     <hr/>
@@ -34,65 +35,26 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-12">
-                            <form id="login-form" th:action="@{'/login'}" method="post" role="form"
-                                  style="display: block">
-                                <div class="form-group">
-                                    <input type="text" name="username" id="username" tabindex="1" class="form-control"
-                                           placeholder="Nazwa użytkownika" value="" required="required"/>
+                            <form id="login-form" th:action="@{'/login'}" method="post" role="form" style="display: block">
+                                <div th:if="${message} == 1" class="alert alert-success">
+                                    <a href="#" class="close" data-dismiss="alert">&times;</a>
+                                    <strong>Success!</strong> Registration was successful.
+                                </div>
+                                <div th:if="${param.logout}" class="alert alert-success">
+                                    <a href="#" class="close" data-dismiss="alert">&times;</a>
+                                    <strong>Success!</strong> Logout was successful.
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" name="password" id="password" tabindex="2"
-                                           class="form-control" placeholder="Hasło" required="required"/>
+                                    <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="konrado33"/>
                                 </div>
-                                <div class="paramError" th:if="${param.error}">Podano złą nazwę użytkownika lub
-                                    hasło!<br/><br/></div>
+                                <div class="form-group">
+                                    <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password" value="haslo"/>
+                                </div>
+                                <div class="paramError" th:if="${param.error}">Username or password is incorrect!<br/><br/></div>
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-sm-6 col-sm-offset-3">
-                                            <input type="submit" name="login-submit" id="login-submit" tabindex="4"
-                                                   class="form-control btn btn-login" value="Zaloguj"/>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </form>
-                            <form id="register-form" th:action="@{'/login/register'}" method="post"
-                                  role="form" style="display: none">
-                                <div class="form-group">
-                                    <input type="text" name="username" id="register-username" tabindex="1"
-                                           class="form-control"
-                                           placeholder="Nazwa użytkownika *" value="" required="required"/>
-                                </div>
-                                <div class="form-group">
-                                    <input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email *" value="" required="required"/>
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" name="register-first-name" id="register-first-name" tabindex="1"
-                                           class="form-control"
-                                           placeholder="Imię" value=""/>
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" name="register-last-name" id="register-last-name" tabindex="1"
-                                           class="form-control"
-                                           placeholder="Nazwisko" value=""/>
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" name="register-password" id="register-password" tabindex="2"
-                                           class="form-control"
-                                           placeholder="Hasło *" required="required"/>
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" name="register-confirm-password"
-                                           id="register-confirm-password" tabindex="2"
-                                           class="form-control" placeholder="Powtórz hasło *" required="required"/>
-                                </div>
-                                <div>* - Pola obowiązkowe!<br/><br/></div>
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-sm-6 col-sm-offset-3">
-                                            <input type="submit" name="register-submit" id="register-submit"
-                                                   tabindex="4" class="form-control btn btn-register"
-                                                   value="Zarejestruj"/>
+                                            <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" onclick="this.blur()" value="Login"/>
                                         </div>
                                     </div>
                                 </div>

@@ -1,21 +1,54 @@
 package pl.jedralski.LibraryRecommendationSystem.model;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
 public class User {
 
     private Long id;
+    @NotEmpty
+    @NotNull
     private String username;
+    @NotEmpty
+    @NotNull
     private String password;
     private String firstName;
     private String lastName;
+    @NotEmpty
+    @NotNull
+    @Pattern(regexp = "^[a-z\\d]+[\\w\\d.-]*@(?:[a-z\\d]+[a-z\\d-]+\\.){1,5}[a-z]{2,6}$")
     private String email;
 
-    public User(Long id, String username, String password, String firstName, String lastName, String email) {
+    public User(){
+    }
+
+    public User(Long id, String username, String firstName, String lastName, String email) {
         this.id = id;
         this.username = username;
-        this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+    }
+
+    public User(String username, String password, String firstName, String lastName, String email) {
+        this.password= password;
+        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+    }
+
+    public User(String username, String firstName, String lastName, String email) {
+        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+    }
+
+    public User(String password) {
+        this.password = password;
     }
 
     public Long getId() {

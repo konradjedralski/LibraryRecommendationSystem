@@ -51,13 +51,14 @@ body {
 
 .btn-primary{
     background-color: #922F00;
+    border-color: #922F00;
 }
 
 .btn-primary:hover,
 .btn-primary:focus {
     color: white;
-    background-color: #6d2300;
-    border-color: #6d2300;
+    background-color: #6d2300 !important;
+    border-color: #6d2300 !important;
 }
 
 .navbar .current a {
@@ -109,8 +110,11 @@ body {
     right: 2px;
     bottom: 5px;
 }
+.message {
+    margin-top: 15px;
+}
 
-@media (max-width: 943px) {
+@media (max-width: 843px) {
     .navbar-header {
         float: none;
     }

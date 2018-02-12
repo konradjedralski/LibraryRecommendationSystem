@@ -1,5 +1,5 @@
 function startTime() {
-    var day = ['Niedziela', 'Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota'];
+    var day = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     var today = new Date();
     var w = today.getDay();
     var d = today.getDate();

@@ -1,10 +1,16 @@
-.waiting-text {  
-    margin-top: 10px;
+.waiting-title {
     font-size: calc(12px + 1vw);
     color: #922F00;
     font-weight: bold;
+    font-style: italic;
+}
+
+.waiting-author {
+    font-size: calc(11px + 0.8vw);
+    color: #922F00;
 }
 
 .waiting {
     margin-bottom: 30px;
+    height: 180px;
 }

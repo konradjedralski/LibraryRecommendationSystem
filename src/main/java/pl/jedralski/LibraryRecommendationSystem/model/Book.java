@@ -1,6 +1,6 @@
 package pl.jedralski.LibraryRecommendationSystem.model;
 
-public class Book {
+public class Book implements Comparable<Book> {
 
     private Long id;
     private String author;
@@ -14,9 +14,9 @@ public class Book {
     private String imageM;
     private String imageL;
     private short rating;
+    private double ratingRecommended;
 
-
-    public Book(Long id, String author, String publisher, String genre, String isbn, String title, short year, short availability, String imageS, String imageM, String imageL) {
+    public Book(Long id, String author, String publisher, String genre, String isbn, String title, short year, String imageL) {
         this.id = id;
         this.author = author;
         this.publisher = publisher;
@@ -24,31 +24,48 @@ public class Book {
         this.isbn = isbn;
         this.title = title;
         this.year = year;
-        this.availability = availability;
-        this.imageS = imageS;
-        this.imageM = imageM;
         this.imageL = imageL;
     }
 
-    public Book(String author, String publisher, String genre, String isbn, String title, short year, String imageL) {
-        this.author = author;
-        this.publisher = publisher;
-        this.genre = genre;
-        this.isbn = isbn;
-        this.title = title;
-        this.year = year;
-        this.imageL = imageL;
-    }
-
-    public Book(String title, String imageM, short rating) {
+    public Book(Long id, String title, String imageM, short rating) {
+        this.id = id;
         this.title = title;
         this.imageM = imageM;
         this.rating = rating;
     }
 
-    public Book(String title, String imageL) {
+    public Book(Long id, String title, String imageL) {
+        this.id = id;
         this.title = title;
         this.imageL = imageL;
+    }
+
+    public Book(Long id, String title, String author, String imageM) {
+        this.id = id;
+        this.author = author;
+        this.title = title;
+        this.imageM = imageM;
+    }
+
+    public Book(Long id, String imageL) {
+        this.id = id;
+        this.imageL = imageL;
+    }
+
+    public Book(Long id, short rating) {
+        this.id = id;
+        this.rating = rating;
+    }
+
+    public Book(Long id, short rating, String imageL) {
+        this.id = id;
+        this.ratingRecommended = rating;
+        this.imageL = imageL;
+    }
+
+    @Override
+    public int compareTo(Book o) {
+        return ((int)o.ratingRecommended - (int)ratingRecommended);
     }
 
     public Long getId() {
@@ -146,4 +163,5 @@ public class Book {
     public void setRating(short rating) {
         this.rating = rating;
     }
+
 }

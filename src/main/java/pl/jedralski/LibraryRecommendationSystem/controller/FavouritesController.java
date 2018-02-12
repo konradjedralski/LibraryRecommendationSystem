@@ -5,6 +5,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pl.jedralski.LibraryRecommendationSystem.exception.DatabaseException;
 import pl.jedralski.LibraryRecommendationSystem.model.Book;
 import pl.jedralski.LibraryRecommendationSystem.service.BookService;
 import pl.jedralski.LibraryRecommendationSystem.service.UserService;
@@ -22,16 +23,14 @@ public class FavouritesController {
     private UserService userService;
 
     @RequestMapping("")
-    public String favourites(Model model, Authentication authentication) {
-        model.addAttribute("username", authentication.getName());
+    public String favourites(Model model, Authentication authentication) throws DatabaseException {
+
         List<Book> favouritesList = new ArrayList<>();
-        try {
-            for (Book book : bookService.findFavourites(userService.findUserIDByUsername(authentication.getName()))){
-                favouritesList.add(new Book(book.getTitle(), book.getImageL()));
-            }
-        } catch (Exception ex) {
-            System.out.println(ex);
+
+        for (Book book : bookService.findFavourites(userService.findUserIDByUsername(authentication.getName()))) {
+            favouritesList.add(new Book(book.getId(), book.getTitle(), book.getImageL()));
         }
+        model.addAttribute("username", authentication.getName());
         model.addAttribute("favouritesList", favouritesList);
         return "favourites";
     }

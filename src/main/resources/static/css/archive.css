@@ -1,5 +1,9 @@
 .archive-img {
-    max-width: 30%;
-    height: auto;
-    margin-bottom: 50px;
+    height: 510px;
+    min-width: 25%;
+}
+
+.image {
+    display: block;
+    margin: 0 auto;
 }

@@ -1,5 +1,9 @@
 .borrowed-img {
     max-width: 50%;
-    height: auto;
-    margin-bottom: 50px;
+    height: 540px;
+}
+
+.image {
+    display: block;
+    margin: 0 auto;
 }

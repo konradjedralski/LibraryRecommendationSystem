@@ -53,7 +53,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/waiting/**").hasAnyAuthority("user", "admin")
                 .and().formLogin().loginPage("/login").failureUrl("/login?error=true").defaultSuccessUrl("/")
                 .usernameParameter("username").passwordParameter("password")
-                .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login")
+                .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login?logout")
                 .and().exceptionHandling().accessDeniedPage("/access-denied");
     }
 
