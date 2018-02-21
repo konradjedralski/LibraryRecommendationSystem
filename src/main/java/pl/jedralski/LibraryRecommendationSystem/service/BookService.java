@@ -47,4 +47,6 @@ public interface BookService {
     boolean addWaiting(Long userID, Long bookID) throws InputException, DatabaseException;
 
     boolean deleteWaiting(Long userID, Long bookID) throws DatabaseException;
+
+    Book usersAndRating(Long bookID) throws DatabaseException;
 }

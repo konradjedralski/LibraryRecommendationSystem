@@ -23,7 +23,7 @@ public class BookDAOImpl implements BookDAO {
         ResultSet resultSet = null;
         try {
             connection = DBConnector.getConnection();
-            String query = "SELECT books.id, author, publisher, genre, isbn, title, year_of_publication, image_url_l FROM books JOIN book_author ON books.author_id=book_author.id JOIN book_genre ON books.genre_id=book_genre.id JOIN book_publisher ON books.publisher_id=book_publisher.id WHERE title = ? LIMIT 1";
+            String query = "SELECT books.id, author, publisher, genre, isbn, title, year_of_publication, image_url_l FROM books JOIN book_author ON books.author_id=book_author.id JOIN book_genre ON books.genre_id=book_genre.id JOIN book_publisher ON books.publisher_id=book_publisher.id WHERE LOWER(title) = LOWER(?) LIMIT 1";
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, title);
             resultSet = preparedStatement.executeQuery();
@@ -594,4 +594,41 @@ public class BookDAOImpl implements BookDAO {
             DBConnector.closeConnection(connection);
         }
     }
+
+    @Override
+    public Book usersAndRating(Long bookID) throws DatabaseException {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            connection = DBConnector.getConnection();
+            String query = "SELECT COUNT(user_id) as users_number, CAST(AVG(rating) AS NUMERIC (10, 2)) as avg_rating FROM book_rating WHERE book_id = ?";
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setLong(1, bookID);
+            resultSet = preparedStatement.executeQuery();
+            Book book = null;
+            if (resultSet == null) {
+                throw new DatabaseException("Error returning result.");
+            }
+            if (resultSet.next()) {
+                int usersNumber = resultSet.getInt("users_number");
+                double avgRating = resultSet.getDouble("avg_rating");
+                book = new Book(usersNumber, avgRating);
+            }
+            if (resultSet.next()) {
+                throw new DatabaseException("Query returned more than 1 record.");
+            }
+            if (book == null) {
+                //throw new DatabaseException("No records matching: id);
+            }
+            return book;
+        } catch (SQLException e) {
+            throw new DatabaseException("Problem with ID: " + e);
+        } finally {
+            DBConnector.closeResultSet(resultSet);
+            DBConnector.closeStatement(preparedStatement);
+            DBConnector.closeConnection(connection);
+        }
+    }
+
 }

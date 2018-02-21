@@ -10,9 +10,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>
+    <script type="text/javascript" src="http://easyautocomplete.com/dist/jquery.easy-autocomplete.min.js"></script>
     <script type="text/javascript" src="/js/date.js"></script>
-    <script type="text/javascript" src="/js/check-image.js"></script>
+    <script type="text/javascript" src="/js/check-image-l.js"></script>
+    <script type="text/javascript" src="/js/autocomplete.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="http://easyautocomplete.com/dist/easy-autocomplete.themes.min.css"/>
+    <link rel="stylesheet" href="http://easyautocomplete.com/dist/easy-autocomplete.min.css"/>
     <link rel="stylesheet" href="/css/styles.css"/>
     <link rel="stylesheet" href="/css/borrowed.css"/>
 
@@ -67,12 +71,14 @@
 </nav>
 
 <div th:each="borrowed : ${borrowedList}">
-    <div class="col-md-3 borrowed-img">
-        <a th:href="@{'/book/search/0/' + ${borrowed.getId()}}"><img th:src="@{${borrowed.getImageL()}}" class="image img-responsive img-rounded"/></a>
+    <div class="col-xs-3 borrowed-img">
+        <a th:href="@{'/book/search/0/' + ${borrowed.getId()}}"><img th:src="@{${borrowed.getImageL()}}" class="image img-responsive img-rounded img"/></a>
     </div>
 </div>
 
-<div class="date" id="txt"></div>
-<div class="author">Copyright &copy; Konrad Jędralski</div>
+<footer>
+    <span class="date" id="txt"></span>
+    <span class="author">Copyright &copy; Konrad Jędralski</span>
+</footer>
 </body>
 </html>

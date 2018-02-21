@@ -9,6 +9,7 @@ import pl.jedralski.LibraryRecommendationSystem.dao.BookDAO;
 import pl.jedralski.LibraryRecommendationSystem.dao.RecommendationDAO;
 import pl.jedralski.LibraryRecommendationSystem.dao.UserDAO;
 import pl.jedralski.LibraryRecommendationSystem.exception.DatabaseException;
+import pl.jedralski.LibraryRecommendationSystem.exception.InputException;
 import pl.jedralski.LibraryRecommendationSystem.model.Book;
 import pl.jedralski.LibraryRecommendationSystem.model.Neighbour;
 import pl.jedralski.LibraryRecommendationSystem.service.BookService;
@@ -39,283 +40,183 @@ public class LibraryRecommendationDAOSystemApplicationTests {
     RecommendationService recommendationService;
 
     @Test
-    public void findByTitle() {
+    public void findByTitle() throws DatabaseException {
         String title = "Going Home: Unfinished Business/ Island of Flowers/ Mind Over Matter";
-        try {
-            System.out.println(bookService.findByTitle(title).getId());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        System.out.println(bookService.findByTitle(title).getId());
     }
 
     @Test
-    public void findByTitleService() {
+    public void findByTitleService() throws DatabaseException {
         String title = "Going Home: Unfinished Business/ Island of Flowers/ Mind Over Matter";
-        try {
-            System.out.println(bookDAO.findByTitle(title).getId());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        System.out.println(bookDAO.findByTitle(title).getId());
     }
 
     @Test
-    public void findById() {
+    public void findById() throws DatabaseException {
         Long id = 5l;
-        try {
-            System.out.println(bookDAO.findById(id).getTitle());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        System.out.println(bookDAO.findById(id).getTitle());
     }
 
     @Test
-    public void findByIdService() {
+    public void findByIdService() throws DatabaseException {
         Long id = 5l;
-        try {
-            System.out.println(bookService.findById(id).getTitle());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        System.out.println(bookService.findById(id).getTitle());
     }
 
     @Test
-    public void findUserIDByUsername() {
+    public void findUserIDByUsername() throws DatabaseException {
         String username = "konrado33";
-        try {
-            System.out.println(userDAO.findAllData(username).getLastName());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        System.out.println(userDAO.findAllData(username).getLastName());
     }
 
     @Test
-    public void findAllData() {
+    public void findAllData() throws DatabaseException {
         String username = "konrado33";
-        try {
-            System.out.println(userDAO.findUserIDByUsername(username));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        System.out.println(userDAO.findUserIDByUsername(username));
     }
 
     @Test
-    public void findRatings() {
+    public void findRatings() throws DatabaseException {
         Long userID = 278859l;
-        try {
-            for (int i = 0; i < bookDAO.findRatings(userID).size(); i++) {
-                System.out.println(bookDAO.findRatings(userID).get(i).getId());
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        for (int i = 0; i < bookDAO.findRatings(userID).size(); i++) {
+            System.out.println(bookDAO.findRatings(userID).get(i).getId());
         }
     }
 
     @Test
-    public void findFavourites() {
+    public void findFavourites() throws DatabaseException {
         Long userID = 278859l;
-        try {
-            for (int i = 0; i < bookDAO.findFavourites(userID).size(); i++) {
-                System.out.println(bookDAO.findFavourites(userID).get(i).getId());
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        for (int i = 0; i < bookDAO.findFavourites(userID).size(); i++) {
+            System.out.println(bookDAO.findFavourites(userID).get(i).getId());
         }
     }
 
     @Test
-    public void findWaitings() {
+    public void findWaitings() throws DatabaseException {
         Long userID = 278859l;
-        try {
-            for (int i = 0; i < bookDAO.findWaitings(userID).size(); i++) {
-                System.out.println(bookDAO.findWaitings(userID).get(i).getTitle());
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        for (int i = 0; i < bookDAO.findWaitings(userID).size(); i++) {
+            System.out.println(bookDAO.findWaitings(userID).get(i).getTitle());
         }
     }
 
     @Test
-    public void findBorrowed() {
+    public void findBorrowed() throws DatabaseException {
         Long userID = 278859l;
-        try {
-            for (int i = 0; i < bookDAO.findBorrowed(userID).size(); i++) {
-                System.out.println(bookDAO.findBorrowed(userID).get(i).getId());
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        for (int i = 0; i < bookDAO.findBorrowed(userID).size(); i++) {
+            System.out.println(bookDAO.findBorrowed(userID).get(i).getId());
         }
     }
 
     @Test
-    public void findArchive() {
+    public void findArchive() throws DatabaseException {
         Long userID = 278859l;
-        try {
-            for (int i = 0; i < bookDAO.findArchive(userID).size(); i++) {
-                System.out.println(bookDAO.findArchive(userID).get(i).getId());
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        for (int i = 0; i < bookDAO.findArchive(userID).size(); i++) {
+            System.out.println(bookDAO.findArchive(userID).get(i).getId());
         }
     }
 
     @Test
-    public void findLast() {
-        Long userID = 278859l;
-        try {
-            for (int i = 0; i < bookDAO.findLast(userID).size(); i++) {
-                System.out.println(bookDAO.findLast(userID).get(i).getId());
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+    public void findLast() throws DatabaseException {
+        Long userID = 278863l;
+        for (int i = 0; i < bookDAO.findLast(userID).size(); i++) {
+            System.out.println(bookDAO.findLast(userID).get(i).getId());
         }
     }
 
     @Test
-    public void checkBorrowed() {
+    public void checkBorrowed() throws DatabaseException {
         Long userID = 278859l;
         Long bookID = 46l;
-        try {
-            System.out.println(bookDAO.checkBorrowed(userID, bookID));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        System.out.println(bookDAO.checkBorrowed(userID, bookID));
     }
 
     @Test
-    public void checkBorrowedActive() {
+    public void checkBorrowedActive() throws DatabaseException {
         Long userID = 278859l;
         Long bookID = 46l;
-        try {
-            System.out.println(bookDAO.checkBorrowedActive(userID, bookID));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        System.out.println(bookDAO.checkBorrowedActive(userID, bookID));
     }
 
     @Test
-    public void checkBookAvailability() {
+    public void checkBookAvailability() throws DatabaseException {
         Long bookID = 2l;
-        try {
-            System.out.println(bookDAO.checkBookAvailability(bookID));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        System.out.println(bookDAO.checkBookAvailability(bookID));
     }
 
     @Test
-    public void updateBookAvailability() {
+    public void updateBookAvailability() throws InputException, DatabaseException {
         Long bookID = 1l;
         short availability = 6;
-        try {
-            bookDAO.updateBookAvailability(bookID, availability);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        bookDAO.updateBookAvailability(bookID, availability);
     }
 
     @Test
-    public void addBookBorrowed() {
+    public void addBookBorrowed() throws InputException, DatabaseException {
         Long userID = 278859l;
         Long bookID = 2l;
-        try {
-            bookDAO.addBookBorrowed(userID, bookID);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        bookDAO.addBookBorrowed(userID, bookID);
     }
 
     @Test
-    public void updateBorrowedActive() {
+    public void updateBorrowedActive() throws InputException, DatabaseException {
         Long userID = 278859l;
         Long bookID = 2l;
         boolean active = false;
-        try {
-            bookDAO.updateBorrowedActive(userID, bookID, active);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        bookDAO.updateBorrowedActive(userID, bookID, active);
     }
 
     @Test
-    public void checkRating() {
+    public void checkRating() throws DatabaseException {
         Long userID = 278859l;
         Long bookID = 21l;
-        try {
-            System.out.println(bookDAO.checkRating(userID, bookID));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        System.out.println(bookDAO.checkRating(userID, bookID));
     }
 
     @Test
-    public void addRating() {
+    public void addRating() throws InputException, DatabaseException {
         Long userID = 278859l;
         Long bookID = 21l;
         short rating = 4;
-        try {
-            bookDAO.addRating(userID, bookID, rating);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        bookDAO.addRating(userID, bookID, rating);
     }
 
     @Test
-    public void updateRating() {
+    public void updateRating() throws InputException, DatabaseException {
         Long userID = 278859l;
         Long bookID = 2l;
         short rating = 6;
-        try {
-            bookDAO.updateRating(userID, bookID, rating);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        bookDAO.updateRating(userID, bookID, rating);
     }
 
     @Test
-    public void checkWaiting() {
+    public void checkWaiting() throws DatabaseException {
         Long userID = 278859l;
         Long bookID = 31l;
-        try {
-            System.out.println(bookDAO.checkWaiting(userID, bookID));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        System.out.println(bookDAO.checkWaiting(userID, bookID));
     }
 
     @Test
-    public void addWaiting() {
+    public void addWaiting() throws InputException, DatabaseException {
         Long userID = 278859l;
         Long bookID = 40l;
-        try {
-            bookDAO.addWaiting(userID, bookID);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        bookDAO.addWaiting(userID, bookID);
     }
 
     @Test
-    public void deleteWaiting() {
+    public void deleteWaiting() throws DatabaseException {
         Long userID = 278859l;
         Long bookID = 40l;
-        try {
-            bookDAO.deleteWaiting(userID, bookID);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        bookDAO.deleteWaiting(userID, bookID);
     }
 
     @Test
-    public void findUsername() {
+    public void findUsername() throws DatabaseException {
         String username = "konrado33";
-        try {
-            System.out.println(userService.findUsername(username));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        System.out.println(userService.findUsername(username));
     }
 
     @Test
-    public void getNeighbourDistance() {
+    public void getNeighbourDistance() throws DatabaseException {
 //        List<Book> readBooks = new ArrayList<>();
 //        readBooks.add(new Book(9l, (short) 10));
 //        readBooks.add(new Book(16l, (short) 10));
@@ -327,61 +228,44 @@ public class LibraryRecommendationDAOSystemApplicationTests {
         Long userID = 278859l;
 //        List<Neighbour> neighbourList = new ArrayList<>();
 
-        try {
 //            for (Book book : recommendationDAO.userRatingsList(userID)){
 //                readBooks.add(new Book(book.getId(), book))
 //            }
 //            for (Neighbour neighbour : recommendationDAO.getNeighbour(readBooks, userID)) {
 //                neighbourList.add(neighbour);
 //            }
-            int i = 0;
-            for (Neighbour neighbour1 : recommendationDAO.getNeighbourDistance(recommendationDAO.userRatingsList(userID), recommendationDAO.getNeighbour(recommendationDAO.userRatingsList(userID), userID))) {
-                System.out.println(neighbour1.getDistance());
-                i++;
-            }
-            System.out.println("Wynik : " + i);
-
-        } catch (Exception e) {
-            e.printStackTrace();
+        int i = 0;
+        for (Neighbour neighbour1 : recommendationDAO.getNeighbourDistance(recommendationDAO.userRatingsList(userID), recommendationDAO.getNeighbour(recommendationDAO.userRatingsList(userID), userID))) {
+            System.out.println(neighbour1.getDistance());
+            i++;
         }
+        System.out.println("Wynik : " + i);
     }
 
     @Test
-    public void getHash() {
+    public void getHash() throws DatabaseException {
         Long id = 278859l;
-        try {
-            System.out.println(userDAO.getHash(id));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        System.out.println(userDAO.getHash(id));
     }
 
     @Test
-    public void avgGenreRating() {
+    public void avgGenreRating() throws DatabaseException {
         Long id = 278859l;
-        try {
-            for (int i = 0; i < recommendationDAO.avgGenreRating(id).size(); i++) {
-                System.out.println(recommendationDAO.avgGenreRating(id).get(i));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        for (int i = 0; i < recommendationDAO.avgGenreRating(id).size(); i++) {
+            System.out.println(recommendationDAO.avgGenreRating(id).get(i));
         }
     }
 
     @Test
-    public void avgAuthorRating() {
+    public void avgAuthorRating() throws DatabaseException {
         Long id = 278859l;
-        try {
-            for (int i = 0; i < recommendationDAO.avgAuthorRating(id).size(); i++) {
-                System.out.println(recommendationDAO.avgAuthorRating(id).get(i));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        for (int i = 0; i < recommendationDAO.avgAuthorRating(id).size(); i++) {
+            System.out.println(recommendationDAO.avgAuthorRating(id).get(i));
         }
     }
 
     @Test
-    public void booksToRecomended() {
+    public void booksToRecomended() throws DatabaseException {
         List<Book> readBooks = new ArrayList<>();
         readBooks.add(new Book(9l, (short) 10));
         readBooks.add(new Book(16l, (short) 10));
@@ -396,32 +280,28 @@ public class LibraryRecommendationDAOSystemApplicationTests {
         HashMap<Long, Double> avgGenreRating = new HashMap<>();
         HashMap<Long, Double> avgAuthorRating = new HashMap<>();
 
-        try {
-            for (Neighbour neighbour : recommendationDAO.getNeighbour(readBooks, userID)) {
-                neighbourList.add(neighbour);
-            }
-            for (Neighbour neighbour1 : recommendationDAO.getNeighbourDistance(readBooks, neighbourList)) {
-                neighbourDistanceList.add(neighbour1);
-            }
-            Set<Map.Entry<Long, Double>> entrySet1 = recommendationDAO.avgGenreRating(userID).entrySet();
-            for (Map.Entry<Long, Double> entry : entrySet1) {
-                avgGenreRating.put(entry.getKey(), entry.getValue());
-            }
-            Set<Map.Entry<Long, Double>> entrySet2 = recommendationDAO.avgAuthorRating(userID).entrySet();
-            for (Map.Entry<Long, Double> entry : entrySet2) {
-                avgAuthorRating.put(entry.getKey(), entry.getValue());
-            }
-            for (Book book : recommendationDAO.booksToRecomended(readBooks, neighbourDistanceList, avgGenreRating, avgAuthorRating)){
-                System.out.println(book.getRating());
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        for (Neighbour neighbour : recommendationDAO.getNeighbour(readBooks, userID)) {
+            neighbourList.add(neighbour);
+        }
+        for (Neighbour neighbour1 : recommendationDAO.getNeighbourDistance(readBooks, neighbourList)) {
+            neighbourDistanceList.add(neighbour1);
+        }
+        Set<Map.Entry<Long, Double>> entrySet1 = recommendationDAO.avgGenreRating(userID).entrySet();
+        for (Map.Entry<Long, Double> entry : entrySet1) {
+            avgGenreRating.put(entry.getKey(), entry.getValue());
+        }
+        Set<Map.Entry<Long, Double>> entrySet2 = recommendationDAO.avgAuthorRating(userID).entrySet();
+        for (Map.Entry<Long, Double> entry : entrySet2) {
+            avgAuthorRating.put(entry.getKey(), entry.getValue());
+        }
+        for (Book book : recommendationDAO.booksToRecomended(readBooks, neighbourDistanceList, avgGenreRating, avgAuthorRating)) {
+            System.out.println(book.getRating());
         }
     }
 
     @Test
-    public void findToRecomended() throws DatabaseException{
-        Long userID = 278859l;
+    public void findToRecomended() throws DatabaseException {
+        Long userID = 278863l;
 //        List<Book> userRatingsList = recommendationService.userRatingsList(userID);
 //        List<Neighbour> getNeighbour = recommendationService.getNeighbour(userRatingsList, userID);
 //        List<Neighbour> getNeighbourDistance = recommendationService.getNeighbourDistance(userRatingsList, getNeighbour);
@@ -429,8 +309,39 @@ public class LibraryRecommendationDAOSystemApplicationTests {
 //        HashMap<Long, Double> avgAuthorRating = recommendationService.avgAuthorRating(userID);
 //        List<Book> booksToRecomended = recommendationService.booksToRecomended(getNeighbourDistance, avgGenreRating, avgAuthorRating);
 
-        for (Book book : recommendationService.booksToRecomended(recommendationService.userRatingsList(userID), recommendationService.getNeighbourDistance(recommendationService.userRatingsList(userID), recommendationService.getNeighbour(recommendationService.userRatingsList(userID), userID)), recommendationService.avgGenreRating(userID), recommendationService.avgAuthorRating(userID))){
+        for (Book book : recommendationService.booksToRecomended(recommendationService.userRatingsList(userID), recommendationService.getNeighbourDistance(recommendationService.userRatingsList(userID), recommendationService.getNeighbour(recommendationService.userRatingsList(userID), userID)), recommendationService.avgGenreRating(userID), recommendationService.avgAuthorRating(userID))) {
             System.out.println(book.getId());
         }
+    }
+
+    @Test
+    public void checkRecommendatedMethods() throws DatabaseException, InputException {
+        Long userID = 278859l;
+        List<Book> userRatingsList = recommendationService.userRatingsList(userID);
+        List<Neighbour> getNeighbour = recommendationService.getNeighbour(userRatingsList, userID);
+        List<Neighbour> getNeighbourDistance = recommendationService.getNeighbourDistance(userRatingsList, getNeighbour);
+        HashMap<Long, Double> avgGenreRating = recommendationService.avgGenreRating(userID);
+        HashMap<Long, Double> avgAuthorRating = recommendationService.avgAuthorRating(userID);
+        List<Book> booksToRecomended = recommendationService.booksToRecomended(userRatingsList, getNeighbourDistance, avgGenreRating, avgAuthorRating);
+        List<Book> recommendationList = new ArrayList<>();
+
+        if (!recommendationService.userRatingsList(userID).isEmpty()) {
+            int i = 0;
+            for (Book recomended : booksToRecomended) {
+                recommendationList.add(new Book(recomended.getId(), recomended.getRatingRecommended()));
+                i++;
+                if (i > 11) {
+                    break;
+                }
+            }
+            recommendationService.deleteRecommended(userID);
+            recommendationService.addRecommended(userID, recommendationList);
+        }
+    }
+
+    @Test
+    public void usersAndRating() throws DatabaseException {
+        Long bookID = 1503l;
+        System.out.println(bookDAO.usersAndRating(bookID).getRatingRecommended());
     }
 }

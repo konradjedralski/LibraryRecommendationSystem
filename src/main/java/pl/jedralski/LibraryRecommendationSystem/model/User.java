@@ -21,7 +21,7 @@ public class User {
     @Pattern(regexp = "^[a-z\\d]+[\\w\\d.-]*@(?:[a-z\\d]+[a-z\\d-]+\\.){1,5}[a-z]{2,6}$")
     private String email;
 
-    public User(){
+    public User() {
     }
 
     public User(Long id, String username, String firstName, String lastName, String email) {
@@ -33,7 +33,7 @@ public class User {
     }
 
     public User(String username, String password, String firstName, String lastName, String email) {
-        this.password= password;
+        this.password = password;
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;

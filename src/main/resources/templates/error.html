@@ -1,11 +1,34 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      lang="en">
 <head>
+    <title>Error</title>
     <meta charset="UTF-8"/>
-    <title>Błąd</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>
+    <script type="text/javascript" src="/js/date.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/styles.css"/>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
 </head>
-<body>
-<div th:text="${message}"></div>
+<body onload="startTime()">
+<div class="error">
+    <p class="error-txt1">Sorry, something goes wrong <i class="far fa-frown"></i></p>
+    <p class="error-txt2">Error: <span th:text="${message}"></span></p>
+</div>
+
+<a role="button" class="btn btn-primary btn-book btn-waiting btn-page error" onclick="goBack()"><i class="fas fa-undo-alt"></i> Return to previous page</a>
+
+<footer>
+    <span class="date" id="txt"></span>
+    <span class="author">Copyright &copy; Konrad Jędralski</span>
+</footer>
 </body>
 </html>

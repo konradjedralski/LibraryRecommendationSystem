@@ -1,7 +1,12 @@
-.book-img {   
-    margin-left: 50px;
-    margin-right: 40px;
+.book {
+    padding-left: 40px;
+    padding-right: 50px;
     float: left;
+}
+
+.image-field {
+    min-width: 282px;
+    text-align: center;
 }
 
 .book-field {
@@ -9,57 +14,91 @@
     margin-right: 30px;
     font-size: calc(12px + 1vw);
     font-weight: bold;
-    color: #922F00;
+    color: #1F1D35;
     line-height: 60px;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.ratings {
+    text-align: center;
 }
 
 .book-txt {
     margin-top: 15px;
     font-size: calc(12px + 1vw);
-    color: #922F00;    
-    line-height: 60px;    
+    color: #1F1D35;
+    line-height: 60px;
 }
 
-.btn-book {    
+.btn {
+    padding: 6px 0px !important;
+}
+
+.buttons {
     margin-top: 15px;
-    width: 150px;
 }
 
-.btn-borrow {
-    margin-right: 5px
+.buttons .flex {
+    padding-left: 25px;
+    padding-right: 25px;
+    justify-content: space-between;
 }
 
-.btn-back {
-    margin-left: 5px
+.buttons .btn-waiting-area {
+    margin-top: 10px;
+    text-align: center;
 }
 
-.btn-waiting {
-    width: 315px;
-    display: block;
+.buttons .btn-waiting-area .btn {
+    width: 99%;
+}
+
+.btn-group, .btn-group-vertical {
+    display: block !important;
+}
+
+.ratings .group-rating .btn-rating {
+    width: 10%;
+    font-weight: bold;
+}
+
+.flex {
+    display: flex;
+}
+
+.btn-book {
+    width: 49%;
 }
 
 .btn-rating {
-    background-color: #922F00;
-    color: white;
-    margin-left: 30px;
+    background-color: #0BA5CB;
+    color: #EEEEE2;
+    margin-left: 50px;
 }
 
 .btn-rating:hover,
 .btn-rating:focus {
-    color: white;
-    background-color: #6d2300;
-    border-color: #6d2300;
+    color: #EEEEE2;
+    background-color: #1F1D35;
+    border-color: #1F1D35;
 }
 
 .rating-text {
     margin-top: 10px;
-    margin-left: 63px;
     font-size: calc(12px + 0.5vw);
     font-weight: bold;
     text-decoration: underline;
-    color: #922F00;
+    color: #1F1D35;
 }
 
-.group-rating {
-    margin-left: -10px;
+.fa-star {
+    color: #0BA5CB;
+}
+
+.fa-3x {
+    font-size: 3em;
 }

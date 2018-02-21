@@ -1,13 +1,17 @@
-.favourites-img {
-    max-width: 50%;
-    height: auto;
-}
-
 .favourites-txt {
-    font-size: calc(12px + 1vw);
-    color: #922F00;
+    font-size: calc(8px + 1vw);
+    color: #1F1D35;
     font-weight: bold;
     text-align: center;
+}
+
+.text-href:hover{
+    text-decoration: none;
+}
+
+.text-href:hover p{
+    color: #0BA5CB !important;
+    font-weight: bold;
 }
 
 .favourites {

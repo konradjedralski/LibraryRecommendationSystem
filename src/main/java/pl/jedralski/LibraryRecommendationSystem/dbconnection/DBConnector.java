@@ -1,15 +1,40 @@
 package pl.jedralski.LibraryRecommendationSystem.dbconnection;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+import pl.jedralski.LibraryRecommendationSystem.exception.DatabaseException;
+
 import java.sql.*;
 
+@Component
 public class DBConnector {
 
-    public static String driverClassName = "org.postgresql.Driver";
-    public static String url = "jdbc:postgresql://localhost/LibraryDatabase";
-    public static String username = "postgres";
-    public static String password = "konrad";
+    public static String driverClassName;
+    public static String url;
+    public static String username;
+    public static String password;
 
-    public static Connection getConnection() throws SQLException {
+    @Value("${spring.datasource.driver-class-name}")
+    public void setDriverClassName(String driverClassName) {
+        this.driverClassName = driverClassName;
+    }
+
+    @Value("${spring.datasource.url}")
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    @Value("${spring.datasource.username}")
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    @Value("${spring.datasource.password}")
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public static Connection getConnection() throws DatabaseException {
         Connection connection = null;
         try {
             Class.forName(driverClassName);
@@ -55,5 +80,4 @@ public class DBConnector {
             connection = null;
         }
     }
-
 }

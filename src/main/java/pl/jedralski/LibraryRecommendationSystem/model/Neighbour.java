@@ -19,7 +19,7 @@ public class Neighbour implements Comparable<Neighbour> {
 
     @Override
     public int compareTo(Neighbour o) {
-        return (distance - o.distance);
+        return (this.distance - o.distance);
     }
 
     public Long getUserID() {

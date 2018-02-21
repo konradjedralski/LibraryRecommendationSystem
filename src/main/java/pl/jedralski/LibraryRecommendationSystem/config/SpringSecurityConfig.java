@@ -51,7 +51,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/favourites/**").hasAnyAuthority("user", "admin")
                 .antMatchers("/ratings/**").hasAnyAuthority("user", "admin")
                 .antMatchers("/waiting/**").hasAnyAuthority("user", "admin")
-                .and().formLogin().loginPage("/login").failureUrl("/login?error=true").defaultSuccessUrl("/")
+                .antMatchers("/recommendation/**").hasAnyAuthority("user", "admin")
+                .and().formLogin().loginPage("/login").failureUrl("/login?error=true").defaultSuccessUrl("/recommendation")
                 .usernameParameter("username").passwordParameter("password")
                 .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login?logout")
                 .and().exceptionHandling().accessDeniedPage("/access-denied");

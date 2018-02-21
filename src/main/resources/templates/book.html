@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en-EN"
-      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en-EN">
 
 <head>
     <title>Book page</title>
@@ -9,9 +9,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>
+    <script type="text/javascript" src="http://easyautocomplete.com/dist/jquery.easy-autocomplete.min.js"></script>
     <script type="text/javascript" src="/js/date.js"></script>
-    <script type="text/javascript" src="/js/check-image.js"></script>
+    <script type="text/javascript" src="/js/check-image-l.js"></script>
+    <script type="text/javascript" src="/js/autocomplete.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="http://easyautocomplete.com/dist/easy-autocomplete.themes.min.css"/>
+    <link rel="stylesheet" href="http://easyautocomplete.com/dist/easy-autocomplete.min.css"/>
     <link rel="stylesheet" href="/css/styles.css"/>
     <link rel="stylesheet" href="/css/book.css"/>
 </head>
@@ -65,7 +69,7 @@
         </div>
     </div>
 </nav>
-<div th:switch="${info}" class="col-md-auto">
+<div th:switch="${info}" class="col-xs-12">
     <div th:case="1" class="alert alert-success">
         <a href="#" class="close" data-dismiss="alert">&times;</a>
         <strong>Success!</strong> A book was borrowed.
@@ -111,60 +115,70 @@
         <strong>Warning!</strong> The book is already in the waiting.
     </div>
 </div>
-<div class="col-md-auto book-img"><img th:src="@{${search.getImageL()}}" class="img-responsive img-rounded"/>
-    <div class="col-md-auto">
-        <div class="col-md-auto">
-            <p class="rating-text"><i class="fas fa-star"></i> Rate the book <i class="fas fa-star"></i></p>
-            <div class="btn-group group-rating" role="group">
-                <a role="button" th:href="@{'/book/rating/1/' + ${search.getId()}}" class="btn btn-rating"
-                   onclick="this.blur()">1</a>
-                <a role="button" th:href="@{'/book/rating/2/' + ${search.getId()}}" class="btn btn-rating"
-                   onclick="this.blur()">2</a>
-                <a role="button" th:href="@{'/book/rating/3/' + ${search.getId()}}" class="btn btn-rating"
-                   onclick="this.blur()">3</a>
-                <a role="button" th:href="@{'/book/rating/4/' + ${search.getId()}}" class="btn btn-rating"
-                   onclick="this.blur()">4</a>
-                <a role="button" th:href="@{'/book/rating/5/' + ${search.getId()}}" class="btn btn-rating"
-                   onclick="this.blur()">5</a>
-                <a role="button" th:href="@{'/book/rating/6/' + ${search.getId()}}" class="btn btn-rating"
-                   onclick="this.blur()">6</a>
-                <a role="button" th:href="@{'/book/rating/7/' + ${search.getId()}}" class="btn btn-rating"
-                   onclick="this.blur()">7</a>
-                <a role="button" th:href="@{'/book/rating/8/' + ${search.getId()}}" class="btn btn-rating"
-                   onclick="this.blur()">8</a>
-                <a role="button" th:href="@{'/book/rating/9/' + ${search.getId()}}" class="btn btn-rating"
-                   onclick="this.blur()">9</a>
-                <a role="button" th:href="@{'/book/rating/10/' + ${search.getId()}}" class="btn btn-rating"
-                   onclick="this.blur()">10</a>
+<div class="row flex book">
+    <div class="col-custom image-field">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="flex-column">
+                    <img th:src="@{${search.getImageL()}}" class="img-responsive img-rounded img"/>
+                    <div class="ratings">
+                        <p class="rating-text"><i class="fas fa-star"></i> Rate the book <i class="fas fa-star"></i></p>
+                        <div class="btn-group group-rating btn-page" role="group">
+                            <a role="button" th:href="@{'/book/rating/1/' + ${search.getId()}}" class="btn btn-rating"
+                               onclick="this.blur()">1</a>
+                            <a role="button" th:href="@{'/book/rating/2/' + ${search.getId()}}" class="btn btn-rating"
+                               onclick="this.blur()">2</a>
+                            <a role="button" th:href="@{'/book/rating/3/' + ${search.getId()}}" class="btn btn-rating"
+                               onclick="this.blur()">3</a>
+                            <a role="button" th:href="@{'/book/rating/4/' + ${search.getId()}}" class="btn btn-rating"
+                               onclick="this.blur()">4</a>
+                            <a role="button" th:href="@{'/book/rating/5/' + ${search.getId()}}" class="btn btn-rating"
+                               onclick="this.blur()">5</a>
+                            <a role="button" th:href="@{'/book/rating/6/' + ${search.getId()}}" class="btn btn-rating"
+                               onclick="this.blur()">6</a>
+                            <a role="button" th:href="@{'/book/rating/7/' + ${search.getId()}}" class="btn btn-rating"
+                               onclick="this.blur()">7</a>
+                            <a role="button" th:href="@{'/book/rating/8/' + ${search.getId()}}" class="btn btn-rating"
+                               onclick="this.blur()">8</a>
+                            <a role="button" th:href="@{'/book/rating/9/' + ${search.getId()}}" class="btn btn-rating"
+                               onclick="this.blur()">9</a>
+                            <a role="button" th:href="@{'/book/rating/10/' + ${search.getId()}}" class="btn btn-rating"
+                               onclick="this.blur()">10</a>
+                        </div>
+                    </div>
+                    <div class="buttons">
+                        <div>
+                            <a role="button" th:href="@{'/book/borrow/' + ${search.getId()}}" class="btn btn-primary btn-book btn-page"
+                               onclick="this.blur()"><i class="fas fa-book"></i> Borrow book</a>
+
+                            <a role="button" th:href="@{'/book/return/' + ${search.getId()}}" class="btn btn-primary btn-book btn-page"
+                               onclick="this.blur()"><i class="fas fa-undo-alt"></i> Return book</a>
+                        </div>
+
+                        <div class="btn-waiting-area">
+                            <a role="button" th:href="@{'/book/waiting/' + ${search.getId()}}" class="btn btn-primary btn-book btn-waiting btn-page"
+                               onclick="this.blur()"><i class="fas fa-clock"></i> Add to the waiting</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <a role="button" th:href="@{'/book/borrow/' + ${search.getId()}}" class="btn btn-primary btn-book btn-borrow"
-           onclick="this.blur()"><i class="fas fa-book"></i> Borrow book</a>
-        <a role="button" th:href="@{'/book/return/' + ${search.getId()}}" class="btn btn-primary btn-book btn-back"
-           onclick="this.blur()"><i class="fas fa-undo-alt"></i> Return book</a>
-        <a role="button" th:href="@{'/book/waiting/' + ${search.getId()}}" class="btn btn-primary btn-book btn-waiting"
-           onclick="this.blur()"><i class="fas fa-clock"></i> Add to the waiting</a>
-
     </div>
 </div>
-<div class="col-md-auto">
-    <p><span class="book-field">Title:</span><span class="book-txt"> <span th:text="${search.getTitle()}"></span></span>
-    </p>
-    <p><span class="book-field">Author:</span><span class="book-txt"><span
-            th:text="${search.getAuthor()}"></span></span>
-    </p>
-    <p><span class="book-field">Publisher:</span><span class="book-txt"><span
-            th:text="${search.getPublisher()}"></span></span></p>
-    <p><span class="book-field">Publication date:</span><span class="book-txt"><span
-            th:text="${search.getYear()}"></span></span></p>
-    <p><span class="book-field">Genre:</span><span class="book-txt"><span
-            th:text="${search.getGenre()}"></span></span></p>
-    <p><span class="book-field">ISBN:</span><span class="book-txt"><span th:text="${search.getIsbn()}"></span></span>
-    </p>
+<div>
+    <p><span class="book-field">Title:</span><span class="book-txt"> <span th:text="${search.getTitle()}"></span></span></p>
+    <p><span class="book-field">Author:</span><span class="book-txt"><span th:text="${search.getAuthor()}"></span></span></p>
+    <p><span class="book-field">Publisher:</span><span class="book-txt"><span th:text="${search.getPublisher()}"></span></span></p>
+    <p><span class="book-field">Publication date:</span><span class="book-txt"><span th:text="${search.getYear()}"></span></span></p>
+    <p><span class="book-field">Genre:</span><span class="book-txt"><span th:text="${search.getGenre()}"></span></span></p>
+    <p><span class="book-field">ISBN:</span><span class="book-txt"><span th:text="${search.getIsbn()}"></span></span></p>
+    <i class="fas fa-star fa-3x"></i> <span class="book-field"><span th:text="${rate.getRatingRecommended()}"></span></span><span class="book-txt"> (average out <span
+        th:text="${rate.getUsersNumber()}"></span> users ratings)</span>
 </div>
 
-<div class="date" id="txt"></div>
-<div class="author">Copyright &copy; Konrad Jędralski</div>
+<footer>
+    <span class="date" id="txt"></span>
+    <span class="author">Copyright &copy; Konrad Jędralski</span>
+</footer>
 </body>
 </html>

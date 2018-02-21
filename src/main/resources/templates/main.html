@@ -10,9 +10,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>
+    <script type="text/javascript" src="http://easyautocomplete.com/dist/jquery.easy-autocomplete.min.js"></script>
     <script type="text/javascript" src="/js/carousel.js"></script>
     <script type="text/javascript" src="/js/date.js"></script>
+    <script type="text/javascript" src="/js/autocomplete.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="http://easyautocomplete.com/dist/easy-autocomplete.themes.min.css"/>
+    <link rel="stylesheet" href="http://easyautocomplete.com/dist/easy-autocomplete.min.css"/>
     <link rel="stylesheet" href="/css/styles.css"/>
     <link rel="stylesheet" href="/css/carousel.css"/>
 </head>
@@ -66,17 +70,18 @@
 </nav>
 <div class="col-md-12">
     <div class="col-md-12 text-left text1">Recommended for you:</div>
-    <div th:if="${checkRecommendation} == 0" class="col-md-12 text-empty"><p>You have not got a recommendation yet because you did not rate any book</p></div>
+    <div th:if="${checkRecommendation} == 0" class="col-md-12 text-empty"><p>You have not got a recommendation yet because you did not rate any book. <br/>
+        Rate some books and login again to prepare recommendations for you.</p></div>
     <div th:if="${checkRecommendation} == 1" class="col-md-12">
         <div class="carousel slide" id="myCarousel1">
             <div class="carousel-inner">
                 <div class="item active">
                     <div class="col-xs-2"><a class="img1" th:href="@{'/book/search/0/' + ${firstRecommendation.getId()}}"><img th:src="@{${firstRecommendation.getImageL()}}"
-                                                                                                                               class="img-responsive img-rounded"/></a></div>
+                                                                                                                               class="img-responsive img-rounded img-carousel"/></a></div>
                 </div>
                 <div th:each="restRecommendation : ${restRecommendation}" class="item">
                     <div class="col-xs-2"><a class="img1" th:href="@{'/book/search/0/' + ${restRecommendation.getId()}}"><img th:src="@{${restRecommendation.getImageL()}}"
-                                                                                                                              class="img-responsive img-rounded"/></a></div>
+                                                                                                                              class="img-responsive img-rounded img-carousel"/></a></div>
                 </div>
             </div>
             <a class="left carousel-control" href="#myCarousel1" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
@@ -87,26 +92,30 @@
     <div class="col-md-1"></div>
     <div class="col-md-10 text-left text2">Recently read:</div>
     <div class="col-md-1"></div>
-    <div th:if="${check} == 0" class="col-md-12 text-empty"><p>You have not read any books</p></div>
+    <div th:if="${check} == 0" class="col-md-12 text-empty"><p>You have not read any books.</p></div>
     <div th:if="${check} == 1" class="col-md-10">
         <div class="carousel slide" id="myCarousel2">
             <div class="carousel-inner">
                 <div class="item active">
-                    <div class="col-xs-2"><a class="img2" th:href="@{'/book/search/0/' + ${firstBook.getId()}}"><img th:src="@{${firstBook.getImageL()}}" class="img-responsive img-rounded"/></a>
+                    <div class="col-xs-2"><a class="img2" th:href="@{'/book/search/0/' + ${firstBook.getId()}}"><img th:src="@{${firstBook.getImageL()}}"
+                                                                                                                     class="img-responsive img-rounded img-carousel"/></a>
                     </div>
                 </div>
                 <div th:each="restBooks : ${restBooks}" class="item">
-                    <div class="col-xs-2"><a class="img2" th:href="@{'/book/search/0/' + ${restBooks.getId()}}"><img th:src="@{${restBooks.getImageL()}}" class="img-responsive img-rounded"/></a>
+                    <div class="col-xs-2"><a class="img2" th:href="@{'/book/search/0/' + ${restBooks.getId()}}"><img th:src="@{${restBooks.getImageL()}}"
+                                                                                                                     class="img-responsive img-rounded img-carousel"/></a>
                     </div>
                 </div>
             </div>
-
             <a class="left carousel-control" href="#myCarousel2" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
             <a class="right carousel-control" href="#myCarousel2" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
         </div>
     </div>
 </div>
-<div class="date" id="txt"></div>
-<div class="author">Copyright &copy; Konrad Jędralski</div>
+
+<footer>
+    <span class="date" id="txt"></span>
+    <span class="author">Copyright &copy; Konrad Jędralski</span>
+</footer>
 </body>
 </html>

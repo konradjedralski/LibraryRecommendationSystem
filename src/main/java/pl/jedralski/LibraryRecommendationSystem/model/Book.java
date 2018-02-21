@@ -15,6 +15,7 @@ public class Book implements Comparable<Book> {
     private String imageL;
     private short rating;
     private double ratingRecommended;
+    private int usersNumber;
 
     public Book(Long id, String author, String publisher, String genre, String isbn, String title, short year, String imageL) {
         this.id = id;
@@ -57,15 +58,21 @@ public class Book implements Comparable<Book> {
         this.rating = rating;
     }
 
-    public Book(Long id, short rating, String imageL) {
+    public Book(Long id, double ratingRecommended) {
         this.id = id;
-        this.ratingRecommended = rating;
-        this.imageL = imageL;
+        this.ratingRecommended = ratingRecommended;
+    }
+
+    public Book(int usersNumber, double ratingRecommended) {
+        this.usersNumber = usersNumber;
+        this.ratingRecommended = ratingRecommended;
     }
 
     @Override
     public int compareTo(Book o) {
-        return ((int)o.ratingRecommended - (int)ratingRecommended);
+        if (o.ratingRecommended - this.ratingRecommended < 0) return -1;
+        else if (o.ratingRecommended - this.ratingRecommended > 0) return 1;
+        else return 0;
     }
 
     public Long getId() {
@@ -164,4 +171,19 @@ public class Book implements Comparable<Book> {
         this.rating = rating;
     }
 
+    public double getRatingRecommended() {
+        return ratingRecommended;
+    }
+
+    public void setRatingRecommended(double ratingRecommended) {
+        this.ratingRecommended = ratingRecommended;
+    }
+
+    public int getUsersNumber() {
+        return usersNumber;
+    }
+
+    public void setUsersNumber(int usersNumber) {
+        this.usersNumber = usersNumber;
+    }
 }

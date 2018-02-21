@@ -92,15 +92,16 @@ public class AccountController {
         }
     }
 
+    //Authentication new username
     private void login(HttpServletRequest request, String userName, String password) {
         UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(userName, password);
 
-        // Authenticate the user
+        //Authenticate the user
         Authentication authentication = authenticationManager.authenticate(authRequest);
         SecurityContext securityContext = SecurityContextHolder.getContext();
         securityContext.setAuthentication(authentication);
 
-        // Create a new session and add the security context.
+        //Create a new session and add the security context.
         HttpSession session = request.getSession(true);
         session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
     }

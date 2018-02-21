@@ -10,8 +10,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>
+    <script type="text/javascript" src="http://easyautocomplete.com/dist/jquery.easy-autocomplete.min.js"></script>
     <script type="text/javascript" src="/js/date.js"></script>
+    <script type="text/javascript" src="/js/edit.js"></script>
+    <script type="text/javascript" src="/js/autocomplete.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="http://easyautocomplete.com/dist/easy-autocomplete.themes.min.css"/>
+    <link rel="stylesheet" href="http://easyautocomplete.com/dist/easy-autocomplete.min.css"/>
     <link rel="stylesheet" href="/css/styles.css"/>
     <link rel="stylesheet" href="/css/account.css"/>
     <link rel="stylesheet" href="/css/edit.css"/>
@@ -86,57 +91,57 @@
         <div class="row">
             <form th:action="@{'/account/edit/profile'}" method="post" class="form-horizontal" role="form">
                 <div class="form-group col-md-12">
-                    <label class="col-md-3 control-label">Username:</label>
+                    <label class="col-md-3 control-label edit-text">Username:</label>
                     <div class="col-md-8">
                         <input name="username" class="form-control" type="text" th:placeholder="${userData.getUsername()}"/>
+                        <div th:if="${message} == 2" class="alert alert-danger">
+                            <a href="#" class="close" data-dismiss="alert">&times;</a>
+                            <strong>Error!</strong> User with the given name already exists.
+                        </div>
+                        <div th:if="${message} == 3" class="alert alert-danger">
+                            <a href="#" class="close" data-dismiss="alert">&times;</a>
+                            <strong>Error!</strong> New username must have minimum 3 characters.
+                        </div>
                     </div>
                 </div>
-                <div th:if="${message} == 2" class="alert alert-danger">
-                    <a href="#" class="close" data-dismiss="alert">&times;</a>
-                    <strong>Error!</strong> User with the given name already exists.
-                </div>
-                <div th:if="${message} == 3" class="alert alert-danger">
-                    <a href="#" class="close" data-dismiss="alert">&times;</a>
-                    <strong>Error!</strong> New username must have minimum 3 characters.
-                </div>
                 <div class="form-group col-md-12">
-                    <label class="col-md-3 control-label">Email:</label>
+                    <label class="col-md-3 control-label edit-text">Email:</label>
                     <div class="col-md-8">
                         <input name="email" class="form-control" type="text" th:placeholder="${userData.getEmail()}"/>
                     </div>
                 </div>
                 <div class="form-group col-md-12">
-                    <label class="col-md-3 control-label">First name:</label>
+                    <label class="col-md-3 control-label edit-text">First name:</label>
                     <div class="col-md-8">
                         <input name="firstName" class="form-control" type="text" th:placeholder="${userData.getFirstName()}"/>
                     </div>
                 </div>
                 <div class="form-group col-md-12">
-                    <label class="col-md-3 control-label">Last name:</label>
+                    <label class="col-md-3 control-label edit-text">Last name:</label>
                     <div class="col-md-8">
                         <input name="lastName" class="form-control" type="text" th:placeholder="${userData.getLastName()}"/>
                     </div>
                 </div>
                 <div class="form-group col-md-12">
-                    <label class="col-md-3 control-label">Password:</label>
+                    <label class="col-md-3 control-label edit-text">Password:</label>
                     <div class="col-md-8">
                         <input id="password" name="password" class="form-control" type="password"/>
+                        <div th:if="${message} == 4" class="alert alert-danger">
+                            <a href="#" class="close" data-dismiss="alert">&times;</a>
+                            <strong>Error!</strong> Password is invalid.
+                        </div>
+                        <div th:if="${message} == 5" class="alert alert-danger">
+                            <a href="#" class="close" data-dismiss="alert">&times;</a>
+                            <strong>Error!</strong> Password can not be empty.
+                        </div>
                     </div>
-                </div>
-                <div th:if="${message} == 4" class="alert alert-danger">
-                    <a href="#" class="close" data-dismiss="alert">&times;</a>
-                    <strong>Error!</strong> Password is invalid.
-                </div>
-                <div th:if="${message} == 5" class="alert alert-danger">
-                    <a href="#" class="close" data-dismiss="alert">&times;</a>
-                    <strong>Error!</strong> Password can not be empty.
                 </div>
                 <div class="form-group col-md-12">
                     <label class="col-md-3 control-label"></label>
                     <div class="col-md-8">
-                        <input type="submit" class="form-control btn btn-primary col-md-3" value="Save Changes" onclick="this.blur()"/>
+                        <input type="submit" class="form-control btn btn-primary btn-page col-md-3" value="Save Changes" onclick="this.blur()"/>
                         <br/><br/>
-                        <a role="button" th:href="@{'/account'}" class=" form-control btn btn-default col-md-3" onclick="this.blur()"> Cancel</a>
+                        <a role="button" th:href="@{'/account'}" class=" form-control btn btn-primary btn-page col-md-3" onclick="this.blur()"> Cancel</a>
                     </div>
                 </div>
             </form>
@@ -144,7 +149,9 @@
     </div>
 </div>
 
-<div class="date" id="txt"></div>
-<div class="author">Copyright &copy; Konrad Jędralski</div>
+<footer>
+    <span class="date" id="txt"></span>
+    <span class="author">Copyright &copy; Konrad Jędralski</span>
+</footer>
 </body>
 </html>

@@ -1,6 +1,6 @@
 package pl.jedralski.LibraryRecommendationSystem.exception;
 
-public class InputException extends Exception{
+public class InputException extends Exception {
 
     private static final long serialVersionUID = 1L;
 

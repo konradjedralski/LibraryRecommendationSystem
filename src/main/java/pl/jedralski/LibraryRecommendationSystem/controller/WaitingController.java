@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.jedralski.LibraryRecommendationSystem.exception.DatabaseException;
 import pl.jedralski.LibraryRecommendationSystem.model.Book;
 import pl.jedralski.LibraryRecommendationSystem.service.BookService;
@@ -32,5 +34,12 @@ public class WaitingController {
         model.addAttribute("username", authentication.getName());
         model.addAttribute("waitingList", waitingList);
         return "waiting";
+    }
+
+    @RequestMapping("/remove/{bookID}")
+    public String remove (@PathVariable Long bookID, Authentication authentication, RedirectAttributes attributes) throws DatabaseException {
+        bookService.deleteWaiting(userService.findUserIDByUsername(authentication.getName()), bookID);
+        attributes.addFlashAttribute("message", 2);
+        return "redirect:/waiting";
     }
 }

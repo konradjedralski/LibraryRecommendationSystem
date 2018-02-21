@@ -44,7 +44,9 @@ public interface BookDAO {
 
     boolean checkWaiting(Long userID, Long bookID) throws DatabaseException;
 
-    boolean addWaiting (Long userID, Long bookID) throws InputException, DatabaseException;
+    boolean addWaiting(Long userID, Long bookID) throws InputException, DatabaseException;
 
-    boolean deleteWaiting (Long userID, Long bookID) throws DatabaseException;
+    boolean deleteWaiting(Long userID, Long bookID) throws DatabaseException;
+
+    Book usersAndRating(Long bookID) throws DatabaseException;
 }

@@ -114,4 +114,9 @@ public class BookServiceImpl implements BookService {
     public boolean deleteWaiting(Long userID, Long bookID) throws DatabaseException {
         return bookDAO.deleteWaiting(userID, bookID);
     }
+
+    @Override
+    public Book usersAndRating(Long bookID) throws DatabaseException {
+        return bookDAO.usersAndRating(bookID);
+    }
 }

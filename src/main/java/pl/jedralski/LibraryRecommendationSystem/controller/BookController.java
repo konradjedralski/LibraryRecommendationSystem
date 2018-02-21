@@ -30,6 +30,7 @@ public class BookController {
         if (bookService.findByTitle(title) != null) {
             model.addAttribute("username", authentication.getName());
             model.addAttribute("search", bookService.findByTitle(title));
+            model.addAttribute("rate", bookService.usersAndRating(bookService.findByTitle(title).getId()));
             return "book";
         } else {
             attributes.addFlashAttribute("message", 1);
@@ -42,6 +43,7 @@ public class BookController {
 
         model.addAttribute("username", authentication.getName());
         model.addAttribute("search", bookService.findById(id));
+        model.addAttribute("rate", bookService.usersAndRating(id));
         model.addAttribute("info", info);
         return "book";
     }

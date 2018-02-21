@@ -1,6 +1,15 @@
 .rating-text {
     font-size: calc(12px + 1vw);
-    color: #922F00;
+    color: #1F1D35;
+    font-weight: bold;
+}
+
+.text-href:hover{
+    text-decoration: none;
+}
+
+.text-href:hover p{
+    color: #0BA5CB !important;
     font-weight: bold;
 }
 
@@ -11,4 +20,8 @@
 
 .italics {
     font-style: italic;
+}
+
+.fa-star {
+    color: #0BA5CB;
 }

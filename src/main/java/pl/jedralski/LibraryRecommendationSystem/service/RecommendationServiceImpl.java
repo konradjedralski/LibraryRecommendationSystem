@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.jedralski.LibraryRecommendationSystem.dao.RecommendationDAO;
 import pl.jedralski.LibraryRecommendationSystem.exception.DatabaseException;
+import pl.jedralski.LibraryRecommendationSystem.exception.InputException;
 import pl.jedralski.LibraryRecommendationSystem.model.Book;
 import pl.jedralski.LibraryRecommendationSystem.model.Neighbour;
 
@@ -44,5 +45,20 @@ public class RecommendationServiceImpl implements RecommendationService {
     @Override
     public List<Book> booksToRecomended(List<Book> userRatingsList, List<Neighbour> neighborhood, HashMap<Long, Double> avgGenreRating, HashMap<Long, Double> avgAuthorRating) throws DatabaseException {
         return recommendationDAO.booksToRecomended(userRatingsList, neighborhood, avgGenreRating, avgAuthorRating);
+    }
+
+    @Override
+    public List<Book> showRecommended(Long userID) throws DatabaseException {
+        return recommendationDAO.showRecommended(userID);
+    }
+
+    @Override
+    public boolean deleteRecommended(Long userID) throws DatabaseException {
+        return recommendationDAO.deleteRecommended(userID);
+    }
+
+    @Override
+    public boolean addRecommended(Long userID, List<Book> booksToRecommended) throws InputException, DatabaseException {
+        return recommendationDAO.addRecommended(userID, booksToRecommended);
     }
 }

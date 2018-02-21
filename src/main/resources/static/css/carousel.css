@@ -1,14 +1,14 @@
 .text1{
-    font-size: calc(12px + 1.5vw);
+    font-size: calc(12px + 1.4vw);
     font-weight: bold;
-    color: #922F00;
+    color: #0BA5CB;
     margin-left: 20px;
 }
 
 .text2{
-    font-size: calc(12px + 1.5vw);
+    font-size: calc(12px + 1.4vw);
     font-weight: bold;
-    color: #922F00;
+    color: #0BA5CB;
     margin-left: 20px;
     margin-top: 5px;
 }
@@ -16,14 +16,14 @@
 .text-empty {
     font-size: calc(12px + 1vw);
     font-weight: bold;
-    color: #922F00;
+    color: #1F1D35;
     text-align: center;
     margin-top: 50px;
 }
 
 .img1 {
     margin-top: 5px;
-    max-width: 75%;
+    max-width: 73%;
     height: auto;
     display: block;
     margin: auto; 
@@ -31,7 +31,7 @@
 
 .img2 {
     margin-top: 5px;
-    max-width: 64%;
+    max-width: 63%;
     height: auto;
     display: block;
     margin: auto; 
