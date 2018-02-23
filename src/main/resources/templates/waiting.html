@@ -12,8 +12,9 @@
     <script src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>
     <script type="text/javascript" src="http://easyautocomplete.com/dist/jquery.easy-autocomplete.min.js"></script>
     <script type="text/javascript" src="/js/date.js"></script>
-    <script type="text/javascript" src="/js/check-image-m.js"></script>
+    <script type="text/javascript" src="/js/check-img-m.js"></script>
     <script type="text/javascript" src="/js/autocomplete.js"></script>
+    <script type="text/javascript" src="/js/navbar.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="http://easyautocomplete.com/dist/easy-autocomplete.themes.min.css"/>
     <link rel="stylesheet" href="http://easyautocomplete.com/dist/easy-autocomplete.min.css"/>
@@ -39,11 +40,11 @@
     </form>
 
     <div class="greeting">
-        <i class="fas fa-user"></i> <span th:text="${username}"></span>
+        <i class="fas fa-user"></i> <a th:href="@{'/account'}" th:text="${username}"></a>
     </div>
 </div>
 
-<nav class="navbar navbar-default">
+<nav id="navbar" class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle nav-btn" data-toggle="collapse" onclick="this.blur()" data-target="#myNavbar">
@@ -68,21 +69,32 @@
         </div>
     </div>
 </nav>
-
-<div th:if="${message} == 2" class="alert alert-success">
-    <a href="#" class="close" data-dismiss="alert">&times;</a>
-    <strong>Succes!</strong> Book was removed from the waiting.
-</div>
-<div th:each="waiting : ${waitingList}">
-    <div class="col-sm-1 waiting">
-        <a th:href="@{'/book/search/0/' + ${waiting.getId()}}"><img th:src="@{${waiting.getImageM()}}" class="img-responsive img-rounded"/></a>
+<div class="col-xs-12">
+    <div th:if="${message} == 2" class="alert alert-success">
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        <strong>Succes!</strong> Book was removed from the waiting.
     </div>
-    <div class="col-sm-5 waiting">
-        <a class="text-href" th:href="@{'/book/search/0/' + ${waiting.getId()}}"><p class="waiting-title"><span th:text="${waiting.getTitle()}"></span></p></a>
-        <p class="waiting-author"><span th:text="${waiting.getAuthor()}"></span></p>
+</div>
 
-        <a role="button" th:href="@{'/waiting/remove/' + ${waiting.getId()}}" class="btn btn-primary btn-page"
-           onclick="this.blur()"><i class="far fa-trash-alt"></i> Remove from waiting</a>
+<div class="waiting">
+    <div class="waiting-area" th:each="waiting : ${waitingList}">
+        <div class="image">
+            <a th:href="@{'/book/search/0/' + ${waiting.getId()}}">
+                <img th:src="@{${waiting.getImageM()}}" class="img img-responsive img-rounded"/>
+            </a>
+        </div>
+        <div class="text">
+            <a th:href="@{'/book/search/0/' + ${waiting.getId()}}">
+                <span th:text="${waiting.getTitle()}"></span>
+            </a>
+            <p>
+                <span class="waiting-author" th:text="${waiting.getAuthor()}"></span>
+            </p>
+            <p>
+                <a role="button" th:href="@{'/waiting/remove/' + ${waiting.getId()}}" class="btn btn-primary btn-page"
+                   onclick="this.blur()"><i class="far fa-trash-alt"></i> Remove from waiting</a>
+            </p>
+        </div>
     </div>
 </div>
 

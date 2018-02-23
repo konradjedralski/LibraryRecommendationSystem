@@ -43,6 +43,11 @@ body {
     color: #EEEEE2;
 }
 
+.header .greeting a {
+    text-decoration: none;
+    color: #EEEEE2;
+}
+
 .navbar {
     background: #DBDBD1;
     border: none;
@@ -126,9 +131,7 @@ body {
 
 footer {
     position: fixed;
-    background-color: #DBDBD1;
-    heigh: 10px;
-    bottom: 0;
+    bottom: 0px;
     width: 100%;
 }
 
@@ -148,7 +151,7 @@ footer {
     margin-left: 20px;
 }
 
-@media (max-width: 843px) {
+@media (max-width: 880px) {
     .navbar-header {
         float: none;
     }

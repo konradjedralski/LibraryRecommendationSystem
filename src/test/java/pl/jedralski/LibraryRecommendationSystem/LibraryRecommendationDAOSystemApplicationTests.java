@@ -344,4 +344,11 @@ public class LibraryRecommendationDAOSystemApplicationTests {
         Long bookID = 1503l;
         System.out.println(bookDAO.usersAndRating(bookID).getRatingRecommended());
     }
+
+    @Test
+    public void findUserBookRating() throws DatabaseException {
+        Long userID = 278859l;
+        Long bookID = 500l;
+        System.out.println(bookDAO.findUserBookRating(userID, bookID));
+    }
 }

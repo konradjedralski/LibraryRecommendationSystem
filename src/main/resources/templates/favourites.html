@@ -12,8 +12,9 @@
     <script src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>
     <script type="text/javascript" src="http://easyautocomplete.com/dist/jquery.easy-autocomplete.min.js"></script>
     <script type="text/javascript" src="/js/date.js"></script>
-    <script type="text/javascript" src="/js/check-image-l.js"></script>
+    <script type="text/javascript" src="/js/check-img-l.js"></script>
     <script type="text/javascript" src="/js/autocomplete.js"></script>
+    <script type="text/javascript" src="/js/navbar.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="http://easyautocomplete.com/dist/easy-autocomplete.themes.min.css"/>
     <link rel="stylesheet" href="http://easyautocomplete.com/dist/easy-autocomplete.min.css"/>
@@ -39,11 +40,11 @@
     </form>
 
     <div class="greeting">
-        <i class="fas fa-user"></i> <span th:text="${username}"></span>
+        <i class="fas fa-user"></i> <a th:href="@{'/account'}" th:text="${username}"></a>
     </div>
 </div>
 
-<nav class="navbar navbar-default">
+<nav id="navbar" class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle nav-btn" data-toggle="collapse" onclick="this.blur()" data-target="#myNavbar">
@@ -68,10 +69,14 @@
         </div>
     </div>
 </nav>
-<div th:each="favourites : ${favouritesList}">
-    <div class="col-xs-3 favourites">
-        <a th:href="@{'/book/search/0/' + ${favourites.getId()}}"><img th:src="@{${favourites.getImageL()}}" class="image img-responsive img-rounded img"/></a>
-        <a class="text-href" th:href="@{'/book/search/0/' + ${favourites.getId()}}"><p class="favourites-txt italics"><span th:text="${favourites.getTitle()}"></span></p></a>
+<div class="row favourites-books">
+    <div class="favourite-img" th:each="favourites : ${favouritesList}">
+        <a th:href="@{'/book/search/0/' + ${favourites.getId()}}">
+            <img th:src="@{${favourites.getImageL()}}" class="image img-responsive img-rounded img"/>
+            <p class="favourite-txt italics">
+                <span th:text="${favourites.getTitle()}"></span>
+            </p>
+        </a>
     </div>
 </div>
 

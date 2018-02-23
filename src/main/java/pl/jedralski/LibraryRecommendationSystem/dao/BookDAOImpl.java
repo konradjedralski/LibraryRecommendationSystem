@@ -631,4 +631,36 @@ public class BookDAOImpl implements BookDAO {
         }
     }
 
+    @Override
+    public short findUserBookRating(Long userID, Long bookID) throws DatabaseException {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            connection = DBConnector.getConnection();
+            String query = "SELECT rating FROM book_rating WHERE user_id = ? AND book_id = ?";
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setLong(1, userID);
+            preparedStatement.setLong(2, bookID);
+            resultSet = preparedStatement.executeQuery();
+            short userRating = 0;
+            if (resultSet == null) {
+                throw new DatabaseException("Error returning result.");
+            }
+            if (resultSet.next()) {
+                userRating = resultSet.getShort("rating");
+            }
+            if (resultSet.next()) {
+                throw new DatabaseException("Query returned more than 1 record.");
+            }
+            return userRating;
+        } catch (SQLException e) {
+            throw new DatabaseException("Problem with ID: " + e);
+        } finally {
+            DBConnector.closeResultSet(resultSet);
+            DBConnector.closeStatement(preparedStatement);
+            DBConnector.closeConnection(connection);
+        }
+    }
+
 }

@@ -1,27 +1,67 @@
-.rating-text {
-    font-size: calc(12px + 1vw);
+.text span {
+    font-size: 17px;
     color: #1F1D35;
     font-weight: bold;
 }
 
-.text-href:hover{
+.text > a span {
+    font-style: italic;
+}
+
+.text a {
+    margin-bottom: 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.rating {
+    font-size: 20px !important;
+}
+
+.rating span {
+    font-size: 20px !important;
+}
+
+.text a:hover {
     text-decoration: none;
 }
 
-.text-href:hover p{
+.text a:hover span {
     color: #0BA5CB !important;
     font-weight: bold;
 }
 
-.rating {
-    margin-bottom: 30px;
-    height: 180px;
-}
-
-.italics {
-    font-style: italic;
-}
-
 .fa-star {
     color: #0BA5CB;
+}
+
+.ratings {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.rating-area {
+    display: flex;
+    height: 160px;
+    width: 500px;
+    margin: 10px;
+}
+
+.rating-area .image {
+    height: 100%;
+    min-width: 120px;
+    max-width: 120px;
+}
+
+.rating-area .text {
+    display: flex;
+    flex-direction: column;
+    padding-left: 15px;
+    padding-top: 1px;
+}
+
+.rating-area img[src="/img/not-found-m.jpg"]{
+    width: 100%;
+    height: 100%;
 }

@@ -49,4 +49,6 @@ public interface BookService {
     boolean deleteWaiting(Long userID, Long bookID) throws DatabaseException;
 
     Book usersAndRating(Long bookID) throws DatabaseException;
+
+    short findUserBookRating(Long userID, Long bookID) throws DatabaseException;
 }

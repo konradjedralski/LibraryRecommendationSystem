@@ -119,4 +119,9 @@ public class BookServiceImpl implements BookService {
     public Book usersAndRating(Long bookID) throws DatabaseException {
         return bookDAO.usersAndRating(bookID);
     }
+
+    @Override
+    public short findUserBookRating(Long userID, Long bookID) throws DatabaseException {
+        return bookDAO.findUserBookRating(userID, bookID);
+    }
 }

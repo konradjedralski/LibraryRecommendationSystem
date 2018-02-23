@@ -13,6 +13,7 @@
     <script type="text/javascript" src="http://easyautocomplete.com/dist/jquery.easy-autocomplete.min.js"></script>
     <script type="text/javascript" src="/js/date.js"></script>
     <script type="text/javascript" src="/js/autocomplete.js"></script>
+    <script type="text/javascript" src="/js/navbar.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="http://easyautocomplete.com/dist/easy-autocomplete.themes.min.css"/>
     <link rel="stylesheet" href="http://easyautocomplete.com/dist/easy-autocomplete.min.css"/>
@@ -38,11 +39,11 @@
     </form>
 
     <div class="greeting">
-        <i class="fas fa-user"></i> <span th:text="${username}"></span>
+        <i class="fas fa-user"></i> <a th:href="@{'/account'}" th:text="${username}"></a>
     </div>
 </div>
 
-<nav class="navbar navbar-default">
+<nav id="navbar" class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle nav-btn" data-toggle="collapse" onclick="this.blur()" data-target="#myNavbar">
@@ -68,16 +69,18 @@
     </div>
 </nav>
 
+<div class="col-xs-12">
+    <div th:if="${message} == 2" class="alert alert-success message">
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        <strong>Success!</strong> The profile has been updated succesfully.
+    </div>
+    <div th:if="${message} == 3" class="alert alert-success message">
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        <strong>Success!</strong> The password has been updated succesfully.
+    </div>
+</div>
 <div class="row">
     <div class="col-md-6">
-        <div th:if="${message} == 2" class="alert alert-success message">
-            <a href="#" class="close" data-dismiss="alert">&times;</a>
-            <strong>Success!</strong> The profile has been updated succesfully.
-        </div>
-        <div th:if="${message} == 3" class="alert alert-success message">
-            <a href="#" class="close" data-dismiss="alert">&times;</a>
-            <strong>Success!</strong> The password has been updated succesfully.
-        </div>
         <p class="account-title">Information about your account</p>
         <div>
             <p class="account-text account-field">Username:</p>

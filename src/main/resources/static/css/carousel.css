@@ -1,3 +1,7 @@
+.row {
+    margin-bottom: 20px;
+}
+
 .text1{
     font-size: calc(12px + 1.4vw);
     font-weight: bold;
@@ -23,18 +27,20 @@
 
 .img1 {
     margin-top: 5px;
-    max-width: 73%;
+    max-width: 70%;
     height: auto;
     display: block;
-    margin: auto; 
+    margin: auto;
+    min-width: 80px;
 }
 
 .img2 {
     margin-top: 5px;
-    max-width: 63%;
+    max-width: 60%;
     height: auto;
     display: block;
-    margin: auto; 
+    margin: auto;
+    min-width: 70px;
 }
 
 .carousel-inner .active.left { 

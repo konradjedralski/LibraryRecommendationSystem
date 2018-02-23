@@ -31,6 +31,8 @@ public class BookController {
             model.addAttribute("username", authentication.getName());
             model.addAttribute("search", bookService.findByTitle(title));
             model.addAttribute("rate", bookService.usersAndRating(bookService.findByTitle(title).getId()));
+            model.addAttribute("userRating", bookService.findUserBookRating(userService.findUserIDByUsername(authentication.getName()), bookService.findByTitle(title).getId()));
+
             return "book";
         } else {
             attributes.addFlashAttribute("message", 1);
@@ -44,6 +46,7 @@ public class BookController {
         model.addAttribute("username", authentication.getName());
         model.addAttribute("search", bookService.findById(id));
         model.addAttribute("rate", bookService.usersAndRating(id));
+        model.addAttribute("userRating", bookService.findUserBookRating(userService.findUserIDByUsername(authentication.getName()), id));
         model.addAttribute("info", info);
         return "book";
     }

@@ -1,28 +1,75 @@
-.favourites-txt {
-    font-size: calc(8px + 1vw);
-    color: #1F1D35;
-    font-weight: bold;
-    text-align: center;
-}
-
-.text-href:hover{
-    text-decoration: none;
-}
-
-.text-href:hover p{
+.favourite-img a:hover,
+.favourite-img p:hover {
     color: #0BA5CB !important;
-    font-weight: bold;
-}
-
-.favourites {
-    height: 700px;
-}
-
-.image {
-    display: block;
-    margin: 0 auto;
+    text-decoration: none;
 }
 
 .italics {
     font-style: italic;
+}
+
+.favourites-books {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.favourites-books .favourite-img {
+    margin: 10px;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+}
+
+.favourites-books a {
+    height: 100%;
+    width: 100%;
+}
+
+.favourites-books img {
+    max-height: calc(100% - 60px);
+    max-width: 100%;
+}
+
+.favourites-books .image[src="/img/not-found-l.jpg"] {
+    width: 100%;
+    height: calc(100% - 60px);
+}
+
+@media (max-width: 767px) {
+    .favourites-books .favourite-img {
+        height: 360px;
+        width: 210px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .favourites-books .favourite-img {
+        height: 460px;
+        width: 280px;
+    }
+}
+
+@media (min-width: 992px) {
+    .favourites-books .favourite-img {
+        height: 560px;
+        width: 310px;
+    }
+}
+
+.favourite-img > a {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.favourite-img p {
+    text-align: center;
+    min-height: 60px;
+    max-height: 60px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #1F1D35;
+    font-weight: bold;
 }

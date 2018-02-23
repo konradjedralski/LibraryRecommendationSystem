@@ -1,25 +1,65 @@
-.waiting-title {
-    font-size: calc(12px + 1vw);
+.text span {
+    font-size: 17px;
     color: #1F1D35;
-    font-weight: bold;
-    font-style: italic;
-}
-
-.text-href:hover{
-    text-decoration: none;
-}
-
-.text-href:hover p{
-    color: #0BA5CB !important;
     font-weight: bold;
 }
 
 .waiting-author {
-    font-size: calc(11px + 0.8vw);
-    color: #1F1D35;
+    font-size: 16px !important;
+    font-weight: normal !important;
+}
+
+.text > a span {
+    font-style: italic;
+}
+
+.text a {
+    margin-bottom: 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.text a:hover {
+    text-decoration: none;
+}
+
+.text a:hover span {
+    color: #0BA5CB !important;
+    font-weight: bold;
+}
+
+.waiting-area .btn {
+    font-size: 12px !important;
 }
 
 .waiting {
-    margin-bottom: 30px;
-    height: 180px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.waiting-area {
+    display: flex;
+    height: 160px;
+    width: 500px;
+    margin: 10px;
+}
+
+.waiting-area .image {
+    height: 100%;
+    min-width: 120px;
+    max-width: 120px;
+}
+
+.waiting-area .text {
+    display: flex;
+    flex-direction: column;
+    padding-left: 15px;
+    padding-top: 1px;
+}
+
+.waiting-area img[src="/img/not-found-m.jpg"]{
+    width: 100%;
+    height: 100%;
 }

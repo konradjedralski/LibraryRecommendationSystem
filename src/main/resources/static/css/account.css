@@ -1,3 +1,7 @@
+.row {
+    margin-bottom: 35px;
+}
+
 .account-title {
     font-size: calc(12px + 1.5vw);
     font-weight: bold;

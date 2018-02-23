@@ -14,6 +14,7 @@
     <script type="text/javascript" src="/js/carousel.js"></script>
     <script type="text/javascript" src="/js/date.js"></script>
     <script type="text/javascript" src="/js/autocomplete.js"></script>
+    <script type="text/javascript" src="/js/navbar.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="http://easyautocomplete.com/dist/easy-autocomplete.themes.min.css"/>
     <link rel="stylesheet" href="http://easyautocomplete.com/dist/easy-autocomplete.min.css"/>
@@ -39,11 +40,11 @@
     </form>
 
     <div class="greeting">
-        <i class="fas fa-user"></i> <span th:text="${username}"></span>
+        <i class="fas fa-user"></i> <a th:href="@{'/account'}" th:text="${username}"></a>
     </div>
 </div>
 
-<nav class="navbar navbar-default">
+<nav id="navbar" class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle nav-btn" data-toggle="collapse" onclick="this.blur()" data-target="#myNavbar">
@@ -68,11 +69,12 @@
         </div>
     </div>
 </nav>
-<div class="col-md-12">
-    <div class="col-md-12 text-left text1">Recommended for you:</div>
-    <div th:if="${checkRecommendation} == 0" class="col-md-12 text-empty"><p>You have not got a recommendation yet because you did not rate any book. <br/>
+<div class="row">
+<div class="col-xs-12">
+    <div class="col-xs-12 text-left text1">Recommended for you:</div>
+    <div th:if="${checkRecommendation} == 0" class="col-xs-12 text-empty"><p>You have not got a recommendation yet because you did not rate any book. <br/>
         Rate some books and login again to prepare recommendations for you.</p></div>
-    <div th:if="${checkRecommendation} == 1" class="col-md-12">
+    <div th:if="${checkRecommendation} == 1" class="col-xs-12">
         <div class="carousel slide" id="myCarousel1">
             <div class="carousel-inner">
                 <div class="item active">
@@ -89,11 +91,11 @@
         </div>
 
     </div>
-    <div class="col-md-1"></div>
-    <div class="col-md-10 text-left text2">Recently read:</div>
-    <div class="col-md-1"></div>
-    <div th:if="${check} == 0" class="col-md-12 text-empty"><p>You have not read any books.</p></div>
-    <div th:if="${check} == 1" class="col-md-10">
+    <div class="col-xs-1"></div>
+    <div class="col-xs-10 text-left text2">Recently read:</div>
+    <div class="col-xs-1"></div>
+    <div th:if="${check} == 0" class="col-xs-12 text-empty"><p>You have not read any books.</p></div>
+    <div th:if="${check} == 1" class="col-xs-10">
         <div class="carousel slide" id="myCarousel2">
             <div class="carousel-inner">
                 <div class="item active">
@@ -112,7 +114,7 @@
         </div>
     </div>
 </div>
-
+</div>
 <footer>
     <span class="date" id="txt"></span>
     <span class="author">Copyright &copy; Konrad Jędralski</span>

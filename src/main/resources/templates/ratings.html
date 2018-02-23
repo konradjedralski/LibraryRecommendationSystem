@@ -12,8 +12,9 @@
     <script src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>
     <script type="text/javascript" src="http://easyautocomplete.com/dist/jquery.easy-autocomplete.min.js"></script>
     <script type="text/javascript" src="/js/date.js"></script>
-    <script type="text/javascript" src="/js/check-image-m.js"></script>
+    <script type="text/javascript" src="/js/check-img-m.js"></script>
     <script type="text/javascript" src="/js/autocomplete.js"></script>
+    <script type="text/javascript" src="/js/navbar.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="http://easyautocomplete.com/dist/easy-autocomplete.themes.min.css"/>
     <link rel="stylesheet" href="http://easyautocomplete.com/dist/easy-autocomplete.min.css"/>
@@ -43,7 +44,7 @@
     </div>
 </div>
 
-<nav class="navbar navbar-default">
+<nav id="navbar" class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle nav-btn" data-toggle="collapse" onclick="this.blur()" data-target="#myNavbar">
@@ -70,13 +71,22 @@
 </nav>
 
 
-<div th:each="ratings : ${ratingsList}">
-    <div class="col-sm-1 rating">
-        <a th:href="@{'/book/search/0/' + ${ratings.getId()}}"><img th:src="@{${ratings.getImageM()}}" class="img-responsive img-rounded"/></a>
-    </div>
-    <div class="col-sm-5 rating">
-        <a class="text-href" th:href="@{'/book/search/0/' + ${ratings.getId()}}"><p class="rating-text italics"><span th:text="${ratings.getTitle()}"></span></p></a>
-        <p class="rating-text"><i class="fas fa-star"></i> <span th:text="${ratings.getRating()}"></span></p>
+<div class="ratings">
+    <div class="rating-area" th:each="ratings : ${ratingsList}">
+        <div class="image">
+            <a th:href="@{'/book/search/0/' + ${ratings.getId()}}">
+                <img th:src="@{${ratings.getImageM()}}" class="img img-responsive img-rounded"/>
+            </a>
+        </div>
+        <div class="text">
+            <a th:href="@{'/book/search/0/' + ${ratings.getId()}}">
+                <span th:text="${ratings.getTitle()}"></span>
+            </a>
+            <p class="rating">
+                <i class="fas fa-star"></i>
+                <span th:text="${ratings.getRating()}"></span>
+            </p>
+        </div>
     </div>
 </div>
 
