@@ -31,6 +31,9 @@ public class WaitingController {
         for (Book book : bookService.findWaitings(userService.findUserIDByUsername(authentication.getName()))) {
             waitingList.add(new Book(book.getId(), book.getTitle(), book.getAuthor(), book.getImageM()));
         }
+        if (waitingList.isEmpty()){
+            model.addAttribute("checkWaiting", 1);
+        }
         model.addAttribute("username", authentication.getName());
         model.addAttribute("waitingList", waitingList);
         return "waiting";

@@ -151,6 +151,14 @@ footer {
     margin-left: 20px;
 }
 
+.text-empty {
+    font-size: calc(12px + 1vw);
+    font-weight: bold;
+    color: #1F1D35;
+    text-align: center;
+    margin-top: 50px;
+}
+
 @media (max-width: 880px) {
     .navbar-header {
         float: none;

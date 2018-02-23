@@ -17,14 +17,6 @@
     margin-top: 5px;
 }
 
-.text-empty {
-    font-size: calc(12px + 1vw);
-    font-weight: bold;
-    color: #1F1D35;
-    text-align: center;
-    margin-top: 50px;
-}
-
 .img1 {
     margin-top: 5px;
     max-width: 70%;

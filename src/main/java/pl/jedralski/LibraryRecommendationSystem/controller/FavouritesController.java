@@ -30,6 +30,9 @@ public class FavouritesController {
         for (Book book : bookService.findFavourites(userService.findUserIDByUsername(authentication.getName()))) {
             favouritesList.add(new Book(book.getId(), book.getTitle(), book.getImageL()));
         }
+        if (favouritesList.isEmpty()){
+            model.addAttribute("checkFavourites", 1);
+        }
         model.addAttribute("username", authentication.getName());
         model.addAttribute("favouritesList", favouritesList);
         return "favourites";

@@ -72,6 +72,7 @@
 </nav>
 
 <div class="row borrowed-archive-books">
+    <div th:if="${checkBorrowed} == 1" class="col-xs-12 text-empty"><p>You have not borrowed any book yet.</p></div>
     <div class="borrowed-archive-img" th:each="borrowed : ${borrowedList}">
         <a th:href="@{'/book/search/0/' + ${borrowed.getId()}}">
             <img th:src="@{${borrowed.getImageL()}}" class="image img-responsive img-rounded img"/></a>

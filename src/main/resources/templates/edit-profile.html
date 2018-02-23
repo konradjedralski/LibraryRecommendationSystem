@@ -109,6 +109,10 @@
                     <label class="col-md-3 control-label edit-text">Email:</label>
                     <div class="col-md-8">
                         <input name="email" class="form-control" type="text" th:placeholder="${userData.getEmail()}"/>
+                        <div th:if="${message} == 6" class="alert alert-danger">
+                            <a href="#" class="close" data-dismiss="alert">&times;</a>
+                            <strong>Error!</strong> Invalid email address.
+                        </div>
                     </div>
                 </div>
                 <div class="form-group col-md-12">

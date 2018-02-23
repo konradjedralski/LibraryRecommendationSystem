@@ -72,6 +72,7 @@
 
 
 <div class="ratings">
+    <div th:if="${checkRatings} == 1" class="col-xs-12 text-empty"><p>You do not have any ratings yet.</p></div>
     <div class="rating-area" th:each="ratings : ${ratingsList}">
         <div class="image">
             <a th:href="@{'/book/search/0/' + ${ratings.getId()}}">

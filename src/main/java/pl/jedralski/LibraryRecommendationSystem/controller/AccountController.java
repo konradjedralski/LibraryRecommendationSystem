@@ -71,6 +71,10 @@ public class AccountController {
             attributes.addFlashAttribute("message", 5);
             return "redirect:/account/edit/profile";
         }
+        if (!email.matches("^[a-z\\d]+[\\w\\d.-]*@(?:[a-z\\d]+[a-z\\d-]+\\.){1,5}[a-z]{2,6}$")){
+            attributes.addFlashAttribute("message", 6);
+            return "redirect:/account/edit/profile";
+        }
         if (passwordEncoder.matches(password, userService.getHash(userData.getId())) == false) {
             attributes.addFlashAttribute("message", 4);
             return "redirect:/account/edit/profile";

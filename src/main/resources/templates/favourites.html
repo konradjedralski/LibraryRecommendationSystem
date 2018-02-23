@@ -70,6 +70,7 @@
     </div>
 </nav>
 <div class="row favourites-books">
+    <div th:if="${checkFavourites} == 1" class="col-xs-12 text-empty"><p>You do not have any favorite books yet.</p></div>
     <div class="favourite-img" th:each="favourites : ${favouritesList}">
         <a th:href="@{'/book/search/0/' + ${favourites.getId()}}">
             <img th:src="@{${favourites.getImageL()}}" class="image img-responsive img-rounded img"/>

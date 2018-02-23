@@ -25,9 +25,11 @@ public class BorrowedController {
     @RequestMapping("")
     public String borrowed(Model model, Authentication authentication) throws DatabaseException{
         List<Book> borrowedList = new ArrayList<>();
-
         for (Book book : bookService.findBorrowed(userService.findUserIDByUsername(authentication.getName()))) {
             borrowedList.add(new Book(book.getId(), book.getImageL()));
+        }
+        if (borrowedList.isEmpty()){
+            model.addAttribute("checkBorrowed", 1);
         }
         model.addAttribute("username", authentication.getName());
         model.addAttribute("borrowedList", borrowedList);
@@ -40,6 +42,9 @@ public class BorrowedController {
 
         for (Book book : bookService.findArchive(userService.findUserIDByUsername(authentication.getName()))) {
             archiveList.add(new Book(book.getId(), book.getImageL()));
+        }
+        if (archiveList.isEmpty()){
+            model.addAttribute("checkArchive", 1);
         }
         model.addAttribute("username", authentication.getName());
         model.addAttribute("archiveList", archiveList);

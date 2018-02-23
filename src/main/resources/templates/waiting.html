@@ -77,6 +77,7 @@
 </div>
 
 <div class="waiting">
+    <div th:if="${checkWaiting} == 1" class="col-xs-12 text-empty"><p>Your waiting is empty yet.</p></div>
     <div class="waiting-area" th:each="waiting : ${waitingList}">
         <div class="image">
             <a th:href="@{'/book/search/0/' + ${waiting.getId()}}">

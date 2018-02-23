@@ -30,6 +30,9 @@ public class RatingsController {
         for (Book book : bookService.findRatings(userService.findUserIDByUsername(authentication.getName()))) {
             ratingsList.add(new Book(book.getId(), book.getTitle(), book.getImageM(), book.getRating()));
         }
+        if (ratingsList.isEmpty()){
+            model.addAttribute("checkRatings", 1);
+        }
         model.addAttribute("username", authentication.getName());
         model.addAttribute("ratingsList", ratingsList);
         return "ratings";

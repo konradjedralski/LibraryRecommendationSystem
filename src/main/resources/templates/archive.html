@@ -72,6 +72,7 @@
 </nav>
 
 <div class="row borrowed-archive-books">
+    <div th:if="${checkArchive} == 1" class="col-xs-12 text-empty"><p>Your archive is empty yet.</p></div>
     <div class="borrowed-archive-img" th:each="archive : ${archiveList}">
         <a th:href="@{'/book/search/0/' + ${archive.getId()}}">
             <img th:src="@{${archive.getImageL()}}" class="image img-responsive img-rounded img"/></a>
