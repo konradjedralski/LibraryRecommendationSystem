@@ -23,7 +23,10 @@
     height: auto;
     display: block;
     margin: auto;
-    min-width: 80px;
+    width: 270px;
+    height: 295px;
+    min-width: 220px;
+    min-height: 245px;
 }
 
 .img2 {
@@ -32,7 +35,10 @@
     height: auto;
     display: block;
     margin: auto;
-    min-width: 70px;
+    width: 250px;
+    height: 275px;
+    min-width: 200px;
+    min-height: 225px;
 }
 
 .carousel-inner .active.left { 

@@ -125,7 +125,7 @@ public class RecommendationDAOImpl implements RecommendationDAO {
                 while (resultSet.next()) {
                     short rating = resultSet.getShort("rating");
                     short bookRating = userRatingsList.get(booksIndexes.get(resultSet.getLong("book_id"))).getRating();
-                    neighbour.setDistance(neighbour.getDistance() + Math.abs(rating - bookRating)); //Add the distance between user and neighbor based on the bookList.
+                    neighbour.setDistance(neighbour.getDistance() + Math.abs(rating - bookRating)); //Add the distance between user and neighbor based on the userRatingsList.
                 }
             }
 

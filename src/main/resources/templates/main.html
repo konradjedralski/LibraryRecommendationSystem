@@ -79,11 +79,11 @@
             <div class="carousel-inner">
                 <div class="item active">
                     <div class="col-xs-2"><a class="img1" th:href="@{'/book/search/0/' + ${firstRecommendation.getId()}}"><img th:src="@{${firstRecommendation.getImageL()}}"
-                                                                                                                               class="img-responsive img-rounded img-carousel"/></a></div>
+                                                                                                                               class="img-responsive img-rounded img-carousel" style="width:100%;height:100%"/></a></div>
                 </div>
                 <div th:each="restRecommendation : ${restRecommendation}" class="item">
                     <div class="col-xs-2"><a class="img1" th:href="@{'/book/search/0/' + ${restRecommendation.getId()}}"><img th:src="@{${restRecommendation.getImageL()}}"
-                                                                                                                              class="img-responsive img-rounded img-carousel"/></a></div>
+                                                                                                                              class="img-responsive img-rounded img-carousel" style="width:100%;height:100%"/></a></div>
                 </div>
             </div>
             <a class="left carousel-control" href="#myCarousel1" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
@@ -100,12 +100,12 @@
             <div class="carousel-inner">
                 <div class="item active">
                     <div class="col-xs-2"><a class="img2" th:href="@{'/book/search/0/' + ${firstBook.getId()}}"><img th:src="@{${firstBook.getImageL()}}"
-                                                                                                                     class="img-responsive img-rounded img-carousel"/></a>
+                                                                                                                     class="img-responsive img-rounded img-carousel" style="width:100%;height:100%"/></a>
                     </div>
                 </div>
                 <div th:each="restBooks : ${restBooks}" class="item">
                     <div class="col-xs-2"><a class="img2" th:href="@{'/book/search/0/' + ${restBooks.getId()}}"><img th:src="@{${restBooks.getImageL()}}"
-                                                                                                                     class="img-responsive img-rounded img-carousel"/></a>
+                                                                                                                     class="img-responsive img-rounded img-carousel" style="width:100%;height:100%"/></a>
                     </div>
                 </div>
             </div>
