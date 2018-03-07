@@ -51,4 +51,18 @@ public interface BookDAO {
     Book usersAndRating(Long bookID) throws DatabaseException;
 
     short findUserBookRating(Long userID, Long bookID) throws DatabaseException;
+
+    boolean findBook (String title) throws DatabaseException;
+
+    int findAuthor (String author) throws DatabaseException;
+
+    int findPublisher (String publisher) throws DatabaseException;
+
+    short findGenre (String genre) throws DatabaseException;
+
+    boolean addAuthor (String author) throws InputException, DatabaseException;
+
+    boolean addPublisher(String publisher) throws InputException, DatabaseException;
+
+    boolean addBook(String isbn, String title, short publicationYear, String imageS, String imageM, String imageL, int authorID, int publisherID, short genreID, short availability) throws InputException, DatabaseException;
 }

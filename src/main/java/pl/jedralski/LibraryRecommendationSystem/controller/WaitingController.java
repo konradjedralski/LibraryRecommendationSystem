@@ -11,6 +11,7 @@ import pl.jedralski.LibraryRecommendationSystem.exception.DatabaseException;
 import pl.jedralski.LibraryRecommendationSystem.model.Book;
 import pl.jedralski.LibraryRecommendationSystem.service.BookService;
 import pl.jedralski.LibraryRecommendationSystem.service.UserService;
+import pl.jedralski.LibraryRecommendationSystem.util.UserUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +27,10 @@ public class WaitingController {
 
     @RequestMapping("")
     public String waiting(Model model, Authentication authentication) throws DatabaseException {
+        if (UserUtils.hasRoleAdmin()){
+            model.addAttribute("admin", 1);
+        }
+
         List<Book> waitingList = new ArrayList<>();
 
         for (Book book : bookService.findWaitings(userService.findUserIDByUsername(authentication.getName()))) {

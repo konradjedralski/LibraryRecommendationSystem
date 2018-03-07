@@ -31,7 +31,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .usersByUsernameQuery(
                         "select username, hash, 1 as active from users where username = ?")
                 .authoritiesByUsernameQuery(
-                       "select username, 'user' as role_name from users where username = ?")
+                       "select username, role_name from users where username = ?")
                 .passwordEncoder(passwordEncoder())
                 .dataSource(dataSource);
     }
@@ -52,6 +52,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/ratings/**").hasAnyAuthority("user", "admin")
                 .antMatchers("/waiting/**").hasAnyAuthority("user", "admin")
                 .antMatchers("/recommendation/**").hasAnyAuthority("user", "admin")
+                .antMatchers("/admin/**").hasAnyAuthority("admin")
                 .and().formLogin().loginPage("/login").failureUrl("/login?error=true").defaultSuccessUrl("/recommendation")
                 .usernameParameter("username").passwordParameter("password")
                 .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login?logout")

@@ -13,6 +13,7 @@ import pl.jedralski.LibraryRecommendationSystem.exception.DatabaseException;
 import pl.jedralski.LibraryRecommendationSystem.exception.InputException;
 import pl.jedralski.LibraryRecommendationSystem.service.BookService;
 import pl.jedralski.LibraryRecommendationSystem.service.UserService;
+import pl.jedralski.LibraryRecommendationSystem.util.UserUtils;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -33,6 +34,9 @@ public class BookController {
             model.addAttribute("rate", bookService.usersAndRating(bookService.findByTitle(title).getId()));
             model.addAttribute("userRating", bookService.findUserBookRating(userService.findUserIDByUsername(authentication.getName()), bookService.findByTitle(title).getId()));
 
+            if (UserUtils.hasRoleAdmin()) {
+                model.addAttribute("admin", 1);
+            }
             return "book";
         } else {
             attributes.addFlashAttribute("message", 1);
@@ -48,6 +52,10 @@ public class BookController {
         model.addAttribute("rate", bookService.usersAndRating(id));
         model.addAttribute("userRating", bookService.findUserBookRating(userService.findUserIDByUsername(authentication.getName()), id));
         model.addAttribute("info", info);
+
+        if (UserUtils.hasRoleAdmin()) {
+            model.addAttribute("admin", 1);
+        }
         return "book";
     }
 
@@ -56,12 +64,12 @@ public class BookController {
         Long userID = userService.findUserIDByUsername(authentication.getName());
         short availability = bookService.checkBookAvailability(bookID);
         if (availability > 0) {
-            if (bookService.checkBorrowed(userID, bookID) == false) {
+            if (!(bookService.checkBorrowed(userID, bookID))) {
                 bookService.addBookBorrowed(userID, bookID);
                 bookService.updateBookAvailability(bookID, --availability);
                 return "redirect:/book/search/1/{bookID}";
             } else {
-                if (bookService.checkBorrowedActive(userID, bookID) == false) {
+                if (!(bookService.checkBorrowedActive(userID, bookID))) {
                     bookService.updateBorrowedActive(userID, bookID, true);
                     bookService.updateBookAvailability(bookID, --availability);
                     return "redirect:/book/search/2/{bookID}";
@@ -72,16 +80,14 @@ public class BookController {
         } else {
             return "redirect:/book/search/4/{bookID}";
         }
-
-
     }
 
     @RequestMapping("/return/{bookID}")
     public String returnBook(@PathVariable Long bookID, Authentication authentication) throws InputException, DatabaseException {
         Long userID = userService.findUserIDByUsername(authentication.getName());
         short availability = bookService.checkBookAvailability(bookID);
-        if (bookService.checkBorrowed(userID, bookID) == true) {
-            if (bookService.checkBorrowedActive(userID, bookID) == true) {
+        if (bookService.checkBorrowed(userID, bookID)) {
+            if (bookService.checkBorrowedActive(userID, bookID)) {
                 bookService.updateBorrowedActive(userID, bookID, false);
                 bookService.updateBookAvailability(bookID, ++availability);
                 return "redirect:/book/search/5/{bookID}";
@@ -96,7 +102,7 @@ public class BookController {
     @RequestMapping("/rating/{rating}/{bookID}")
     public String addRating(@PathVariable short rating, @PathVariable Long bookID, Authentication authentication) throws InputException, DatabaseException {
         Long userID = userService.findUserIDByUsername(authentication.getName());
-        if (bookService.checkRating(userID, bookID) == false) {
+        if (!(bookService.checkRating(userID, bookID))) {
             bookService.addRating(userID, bookID, rating);
             bookService.deleteWaiting(userID, bookID);
             return "redirect:/book/search/8/{bookID}";
@@ -110,7 +116,7 @@ public class BookController {
     @RequestMapping("/waiting/{bookID}")
     public String addWaiting(@PathVariable Long bookID, Authentication authentication) throws InputException, DatabaseException {
         Long userID = userService.findUserIDByUsername(authentication.getName());
-        if (bookService.checkWaiting(userID, bookID) == false) {
+        if (!(bookService.checkWaiting(userID, bookID))) {
             bookService.addWaiting(userID, bookID);
             return "redirect:/book/search/10/{bookID}";
         } else {

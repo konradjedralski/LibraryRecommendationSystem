@@ -63,6 +63,7 @@
                 <li><a th:href="@{'/borrowed'}">Borrowed</a></li>
                 <li><a th:href="@{'/borrowed/archive'}">Archive</a></li>
                 <li><a th:href="@{'/account'}">Account</a></li>
+                <li th:if="${admin} == 1"><a th:href="@{'/admin'}">Administrator</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a th:href="@{'/logout'}"><i class="fas fa-power-off"></i> Logout</a></li>
@@ -171,7 +172,7 @@
             <span th:text="${search.getPublisher()}"></span>
         </p>
         <p>
-            <span class="book-field">Publication date:</span>
+            <span class="book-field">Publication year:</span>
             <span th:text="${search.getYear()}"></span>
         </p>
         <p>

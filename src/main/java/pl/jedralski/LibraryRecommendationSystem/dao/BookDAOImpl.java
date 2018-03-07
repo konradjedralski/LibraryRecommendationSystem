@@ -663,4 +663,186 @@ public class BookDAOImpl implements BookDAO {
         }
     }
 
+    @Override
+    public boolean findBook(String title) throws DatabaseException {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            connection = DBConnector.getConnection();
+            String query = "SELECT id FROM books WHERE title = ? LIMIT 1";
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, title);
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet == null) {
+                return false;
+            }
+            if (resultSet.next()) {
+                return true;
+            } else return false;
+        } catch (SQLException e) {
+            throw new DatabaseException("Exception: " + e);
+        } finally {
+            DBConnector.closeResultSet(resultSet);
+            DBConnector.closeStatement(preparedStatement);
+            DBConnector.closeConnection(connection);
+        }
+    }
+
+    @Override
+    public int findAuthor(String author) throws DatabaseException {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            connection = DBConnector.getConnection();
+            String query = "SELECT id FROM book_author WHERE author = ? LIMIT 1";
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, author);
+            resultSet = preparedStatement.executeQuery();
+            int authorID = 0;
+            if (resultSet == null) {
+                return authorID;
+            }
+            if (resultSet.next()) {
+                authorID = resultSet.getInt("id");
+                return authorID;
+            } else return authorID;
+        } catch (SQLException e) {
+            throw new DatabaseException("Exception: " + e);
+        } finally {
+            DBConnector.closeResultSet(resultSet);
+            DBConnector.closeStatement(preparedStatement);
+            DBConnector.closeConnection(connection);
+        }
+    }
+
+    @Override
+    public int findPublisher(String publisher) throws DatabaseException {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            connection = DBConnector.getConnection();
+            String query = "SELECT id FROM book_publisher WHERE publisher = ? LIMIT 1";
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, publisher);
+            resultSet = preparedStatement.executeQuery();
+            int publisherID = 0;
+            if (resultSet == null) {
+                return publisherID;
+            }
+            if (resultSet.next()) {
+                publisherID = resultSet.getInt("id");
+                return publisherID;
+            } else return publisherID;
+        } catch (SQLException e) {
+            throw new DatabaseException("Exception: " + e);
+        } finally {
+            DBConnector.closeResultSet(resultSet);
+            DBConnector.closeStatement(preparedStatement);
+            DBConnector.closeConnection(connection);
+        }
+    }
+
+    @Override
+    public short findGenre(String genre) throws DatabaseException {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            connection = DBConnector.getConnection();
+            String query = "SELECT id FROM book_genre WHERE genre = ? LIMIT 1";
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, genre);
+            resultSet = preparedStatement.executeQuery();
+            short genreID = 0;
+            if (resultSet == null) {
+                return genreID;
+            }
+            if (resultSet.next()) {
+                genreID = resultSet.getShort("id");
+                return genreID;
+            } else return genreID;
+        } catch (SQLException e) {
+            throw new DatabaseException("Exception: " + e);
+        } finally {
+            DBConnector.closeResultSet(resultSet);
+            DBConnector.closeStatement(preparedStatement);
+            DBConnector.closeConnection(connection);
+        }
+    }
+
+    @Override
+    public boolean addAuthor(String author) throws InputException, DatabaseException {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        try {
+            connection = DBConnector.getConnection();
+            String query = "INSERT INTO book_author (author) VALUES (?)";
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, author);
+            preparedStatement.executeUpdate();
+            return true;
+        } catch (IllegalArgumentException e) {
+            throw new InputException("Insert failed. ", e);
+        } catch (SQLException e) {
+            throw new DatabaseException("Update failed. ", e);
+        } finally {
+            DBConnector.closeStatement(preparedStatement);
+            DBConnector.closeConnection(connection);
+        }
+    }
+
+    @Override
+    public boolean addPublisher(String publisher) throws InputException, DatabaseException {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        try {
+            connection = DBConnector.getConnection();
+            String query = "INSERT INTO book_publisher (publisher) VALUES (?)";
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, publisher);
+            preparedStatement.executeUpdate();
+            return true;
+        } catch (IllegalArgumentException e) {
+            throw new InputException("Insert failed. ", e);
+        } catch (SQLException e) {
+            throw new DatabaseException("Update failed. ", e);
+        } finally {
+            DBConnector.closeStatement(preparedStatement);
+            DBConnector.closeConnection(connection);
+        }
+    }
+
+    @Override
+    public boolean addBook(String isbn, String title, short publicationYear, String imageS, String imageM, String imageL, int authorID, int publisherID, short genreID, short availability) throws InputException, DatabaseException {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        try {
+            connection = DBConnector.getConnection();
+            String query = "INSERT INTO books (isbn, title, year_of_publication, image_url_s, image_url_m, image_url_l, author_id, publisher_id, genre_id, availability) VALUES (?,?,?,?,?,?,?,?,?,?)";
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, isbn);
+            preparedStatement.setString(2, title);
+            preparedStatement.setShort(3, publicationYear);
+            preparedStatement.setString(4, imageS);
+            preparedStatement.setString(5, imageM);
+            preparedStatement.setString(6, imageL);
+            preparedStatement.setInt(7, authorID);
+            preparedStatement.setInt(8, publisherID);
+            preparedStatement.setInt(9, genreID);
+            preparedStatement.setShort(10, availability);
+            preparedStatement.executeUpdate();
+            return true;
+        } catch (IllegalArgumentException e) {
+            throw new InputException("Insert failed. ", e);
+        } catch (SQLException e) {
+            throw new DatabaseException("Update failed. ", e);
+        } finally {
+            DBConnector.closeStatement(preparedStatement);
+            DBConnector.closeConnection(connection);
+        }
+    }
+
 }

@@ -39,15 +39,11 @@
                                            th:field="*{username}"/>
                                     <div th:if="${#fields.hasErrors('username')}" class="alert alert-danger">
                                         <a href="#" class="close" data-dismiss="alert">&times;</a>
-                                        <strong>Error!</strong> Username can not be empty.
+                                        <strong>Error!</strong> Username must have minimum 3 characters (only letters and numbers).
                                     </div>
                                     <div th:if="${message} == 1" class="alert alert-danger">
                                         <a href="#" class="close" data-dismiss="alert">&times;</a>
                                         <strong>Error!</strong> The user with the given name already exists.
-                                    </div>
-                                    <div th:if="${message} == 2" class="alert alert-danger">
-                                        <a href="#" class="close" data-dismiss="alert">&times;</a>
-                                        <strong>Error!</strong> Username must have minimum 3 characters.
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -69,11 +65,7 @@
                                     <input type="password" name="register-password" id="register-password" tabindex="2" class="form-control" placeholder="Password *" th:field="*{password}"/>
                                     <div th:if="${#fields.hasErrors('password')}" class="alert alert-danger">
                                         <a href="#" class="close" data-dismiss="alert">&times;</a>
-                                        <strong>Error!</strong> Password can not be empty.
-                                    </div>
-                                    <div th:if="${message} == 3" class="alert alert-danger">
-                                        <a href="#" class="close" data-dismiss="alert">&times;</a>
-                                        <strong>Error!</strong> Password must have minimum 3 characters.
+                                        <strong>Error!</strong> Password must have minimum 3 characters (only letters and numbers).
                                     </div>
                                 </div>
                                 <div class="form-group">

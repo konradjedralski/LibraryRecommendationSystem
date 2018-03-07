@@ -61,6 +61,7 @@
                 <li><a th:href="@{'/borrowed'}">Borrowed</a></li>
                 <li><a th:href="@{'/borrowed/archive'}">Archive</a></li>
                 <li class="current"><a th:href="@{'/account'}">Account</a></li>
+                <li th:if="${admin} == 1"><a th:href="@{'/admin'}">Administrator</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a th:href="@{'/logout'}"><i class="fas fa-power-off"></i> Logout</a></li>
@@ -70,11 +71,11 @@
 </nav>
 
 <div class="col-xs-12">
-    <div th:if="${message} == 2" class="alert alert-success message">
+    <div th:if="${message} == 2" class="alert alert-success message col-xs-5">
         <a href="#" class="close" data-dismiss="alert">&times;</a>
         <strong>Success!</strong> The profile has been updated succesfully.
     </div>
-    <div th:if="${message} == 3" class="alert alert-success message">
+    <div th:if="${message} == 3" class="alert alert-success message col-xs-5">
         <a href="#" class="close" data-dismiss="alert">&times;</a>
         <strong>Success!</strong> The password has been updated succesfully.
     </div>

@@ -1,15 +1,11 @@
 $(function () {
-
-    var password = document.getElementById("register-password");
-    var confirm_password = document.getElementById("register-confirm-password");
-
     function validatePassword() {
-        if (password.value != confirm_password.value) {
-            confirm_password.setCustomValidity("Password is not the same!");
+        if (document.getElementById("register-password").value != document.getElementById("register-confirm-password").value) {
+            document.getElementById("register-confirm-password").setCustomValidity("Password is not the same!");
         } else {
-            confirm_password.setCustomValidity('');
+            document.getElementById("register-confirm-password").setCustomValidity('');
         }
     }
-    password.onchange = validatePassword;
-    confirm_password.onkeyup = validatePassword;
+    document.getElementById("register-password").onchange = validatePassword;
+    document.getElementById("register-confirm-password").onkeyup = validatePassword;
 });

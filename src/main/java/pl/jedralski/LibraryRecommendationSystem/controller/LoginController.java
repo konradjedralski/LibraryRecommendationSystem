@@ -36,14 +36,6 @@ public class LoginController {
 
     @PostMapping("/register")
     public String registerPost(@ModelAttribute("user") @Valid User user, BindingResult bindingResult, RedirectAttributes attributes) throws InputException, DatabaseException {
-        if (user.getUsername().length() < 3) {
-            attributes.addFlashAttribute("message", 2);
-            return "redirect:/login/register";
-        }
-        if (user.getPassword().length() < 3) {
-            attributes.addFlashAttribute("message", 3);
-            return "redirect:/login/register";
-        }
         if (userService.findUsername(user.getUsername()) == true) {
             attributes.addFlashAttribute("message", 1);
             return "redirect:/login/register";
@@ -57,6 +49,5 @@ public class LoginController {
                 return "redirect:/login";
             }
         }
-
     }
 }

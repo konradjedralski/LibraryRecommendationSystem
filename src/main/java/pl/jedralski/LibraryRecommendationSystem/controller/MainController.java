@@ -10,6 +10,7 @@ import pl.jedralski.LibraryRecommendationSystem.model.Book;
 import pl.jedralski.LibraryRecommendationSystem.service.BookService;
 import pl.jedralski.LibraryRecommendationSystem.service.RecommendationService;
 import pl.jedralski.LibraryRecommendationSystem.service.UserService;
+import pl.jedralski.LibraryRecommendationSystem.util.UserUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +37,10 @@ public class MainController {
         List<Book> recommendationList = new ArrayList<>();
         List<Book> lastList = new ArrayList<>();
 
+        if (UserUtils.hasRoleAdmin()){
+            model.addAttribute("admin", 1);
+        }
+
         for (Book recomended : recommendationService.showRecommended(userID)) {
             recommendationList.add(new Book(recomended.getId(), recomended.getImageL()));
         }
@@ -57,4 +62,5 @@ public class MainController {
         }
         return "main";
     }
+
 }

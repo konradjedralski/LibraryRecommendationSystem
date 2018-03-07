@@ -15,6 +15,7 @@ import pl.jedralski.LibraryRecommendationSystem.exception.DatabaseException;
 import pl.jedralski.LibraryRecommendationSystem.exception.InputException;
 import pl.jedralski.LibraryRecommendationSystem.model.User;
 import pl.jedralski.LibraryRecommendationSystem.service.UserService;
+import pl.jedralski.LibraryRecommendationSystem.util.UserUtils;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -34,6 +35,11 @@ public class AccountController {
     public String account(Model model, Authentication authentication) throws DatabaseException {
         model.addAttribute("username", authentication.getName());
         model.addAttribute("userData", userService.findAllData(authentication.getName()));
+
+        if (UserUtils.hasRoleAdmin()) {
+            model.addAttribute("admin", 1);
+        }
+
         return "account";
     }
 
@@ -41,7 +47,9 @@ public class AccountController {
     public String editProfile(Model model, Authentication authentication) throws DatabaseException {
         model.addAttribute("username", authentication.getName());
         model.addAttribute("userData", userService.findAllData(authentication.getName()));
-        model.addAttribute("user", new User());
+        if (UserUtils.hasRoleAdmin()) {
+            model.addAttribute("admin", 1);
+        }
         return "edit-profile";
     }
 
@@ -51,10 +59,6 @@ public class AccountController {
         model.addAttribute("username", authentication.getName());
         model.addAttribute("userData", userData);
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        if (username.length() > 0 && username.length() < 3) {
-            attributes.addFlashAttribute("message", 3);
-            return "redirect:/account/edit/profile";
-        }
         if (username.equals("")) {
             username = userData.getUsername();
         }
@@ -67,24 +71,16 @@ public class AccountController {
         if (lastName.equals("")) {
             lastName = userData.getLastName();
         }
-        if (password.equals("")) {
-            attributes.addFlashAttribute("message", 5);
+        if (!(passwordEncoder.matches(password, userService.getHash(userData.getId())))) {
+            attributes.addFlashAttribute("message", 3);
             return "redirect:/account/edit/profile";
         }
-        if (!email.matches("^[a-z\\d]+[\\w\\d.-]*@(?:[a-z\\d]+[a-z\\d-]+\\.){1,5}[a-z]{2,6}$")){
-            attributes.addFlashAttribute("message", 6);
-            return "redirect:/account/edit/profile";
-        }
-        if (passwordEncoder.matches(password, userService.getHash(userData.getId())) == false) {
-            attributes.addFlashAttribute("message", 4);
-            return "redirect:/account/edit/profile";
-        }
-        if (username.equals(userData.getUsername()) == true) {
+        if (username.equals(userData.getUsername())) {
             userService.updateUser(userData.getId(), username, firstName, lastName, email);
             attributes.addFlashAttribute("message", 2);
             return "redirect:/account";
         } else {
-            if (userService.findUsername(username) == true) {
+            if (userService.findUsername(username)) {
                 attributes.addFlashAttribute("message", 2);
                 return "redirect:/account/edit/profile";
             } else {
@@ -114,33 +110,22 @@ public class AccountController {
     public String editPassword(Model model, Authentication authentication) throws DatabaseException {
         model.addAttribute("username", authentication.getName());
         model.addAttribute("userData", userService.findAllData(authentication.getName()));
-        model.addAttribute("user", new User());
+        if (UserUtils.hasRoleAdmin()) {
+            model.addAttribute("admin", 1);
+        }
         return "edit-password";
     }
 
     @PostMapping("/edit/password")
-    public String editPasswordPost(@RequestParam("current-password") String currentPassword, @RequestParam("password") String password, Model model, Authentication authentication, RedirectAttributes attributes) throws InputException, DatabaseException {
+    public String editPasswordPost(@RequestParam("current-password") String currentPassword, @RequestParam("new-password") String password, Model model, Authentication authentication, RedirectAttributes attributes) throws InputException, DatabaseException {
         User userData = userService.findAllData(authentication.getName());
         model.addAttribute("username", authentication.getName());
         model.addAttribute("userData", userData);
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        if (currentPassword.equals("")) {
-            attributes.addFlashAttribute("message", 5);
-            return "redirect:/account/edit/password";
-        }
-        if (passwordEncoder.matches(currentPassword, userService.getHash(userData.getId())) == true) {
-            if (password.equals("")) {
-                attributes.addFlashAttribute("message", 6);
-                return "redirect:/account/edit/password";
-            }
-            if (password.length() < 3) {
+        if (passwordEncoder.matches(currentPassword, userService.getHash(userData.getId()))) {
+            if (currentPassword.equals(password)) {
                 attributes.addFlashAttribute("message", 3);
                 return "redirect:/account/edit/password";
-
-            } else if (currentPassword.equals(password) == true) {
-                attributes.addFlashAttribute("message", 4);
-                return "redirect:/account/edit/password";
-
             } else {
                 userService.updateUserPassword(userData.getId(), password);
                 attributes.addFlashAttribute("message", 3);

@@ -124,4 +124,39 @@ public class BookServiceImpl implements BookService {
     public short findUserBookRating(Long userID, Long bookID) throws DatabaseException {
         return bookDAO.findUserBookRating(userID, bookID);
     }
+
+    @Override
+    public boolean findBook(String title) throws DatabaseException {
+        return bookDAO.findBook(title);
+    }
+
+    @Override
+    public int findAuthor(String author) throws DatabaseException {
+        return bookDAO.findAuthor(author);
+    }
+
+    @Override
+    public int findPublisher(String publisher) throws DatabaseException {
+        return bookDAO.findPublisher(publisher);
+    }
+
+    @Override
+    public short findGenre(String genre) throws DatabaseException {
+        return bookDAO.findGenre(genre);
+    }
+
+    @Override
+    public boolean addAuthor(String author) throws InputException, DatabaseException {
+        return bookDAO.addAuthor(author);
+    }
+
+    @Override
+    public boolean addPublisher(String publisher) throws InputException, DatabaseException {
+        return bookDAO.addPublisher(publisher);
+    }
+
+    @Override
+    public boolean addBook(String isbn, String title, short publicationYear, String imageS, String imageM, String imageL, int authorID, int publisherID, short genreID, short availability) throws InputException, DatabaseException {
+        return bookDAO.addBook(isbn, title, publicationYear, imageS, imageM, imageL, authorID, publisherID, genreID, availability);
+    }
 }

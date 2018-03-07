@@ -1,0 +1,10 @@
+.admin-title {
+    font-size: calc(12px + 1.5vw);
+    font-weight: bold;
+    margin-left: 30px;
+    color: #0BA5CB;
+}
+
+.txt{
+    color: #1F1D35;
+}

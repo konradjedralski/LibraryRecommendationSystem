@@ -10,9 +10,11 @@ public class User {
     private Long id;
     @NotEmpty
     @NotNull
+    @Pattern(regexp = "[a-zA-Z0-9]{3,}")
     private String username;
     @NotEmpty
     @NotNull
+    @Pattern(regexp = "[a-zA-Z0-9]{3,}")
     private String password;
     private String firstName;
     private String lastName;
