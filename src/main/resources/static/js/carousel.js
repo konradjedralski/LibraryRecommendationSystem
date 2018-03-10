@@ -11,6 +11,8 @@ $(document).ready(function(){
                 $(this).attr("src", "/img/not-found-l.jpg");
                 addedImages--;
             }
+            $(this).width('100%');
+            $(this).height('100%');
             addedImages++;
             if (addedImages >= everyImages) {
                 $('#myCarousel1').carousel({
